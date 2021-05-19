@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
 namespace Factorisation {
 
+// ----------------------------------------------------------------
 // run classical seive if only is_prime is needed, otherwise run linear_seive
 // basic function linear_seive, seive, segmented_seive
 // public:- prime, Sieve, LinearSieve, smallest_factor, is_Prime, prime_factors, factors
+// ----------------------------------------------------------------
 
 vector<bool> is_prime;
 vector<int> prime;
@@ -242,7 +243,7 @@ namespace Modular_Arithmetics {
 
 //----------------------------------------------------------------
 // contain basic function like discrete logarithm, primitive root, discrete root
-//															  DL()						  generator() 		DR()
+//													Discrete_Logarithm()   generator() 		Discrete_Roots()
 //----------------------------------------------------------------
 
 template<class X, class Y> X bpow (X a , Y b, int64_t mod) {	// use like bpow <__int128, int64_t> for mod > 1e9
@@ -323,12 +324,15 @@ template<class X> vector<X> Discrete_Roots (X k, X a, X mod, bool want_all = fal
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	int t;
-	cin >> t;
-	while (t--) {
-		int a, b, m;
-		cin >> a >> b >> m;
-		cout << Modular_Arithmetics::Discrete_Logarithm <int64_t> (a, b, m) << '\n';
-	}
+	// int t;
+	// cin >> t;
+	// while (t--) {
+	// 	int a, b, m;
+	// 	cin >> a >> b >> m;
+	// 	cout << Modular_Arithmetics::Discrete_Logarithm <int64_t> (a, b, m) << '\n';
+	// }
+	cout << Modular_Arithmetics::generator <int64_t> (1107296257) << '\n';
+	cout << Modular_Arithmetics::generator <int64_t> (2281701377) << '\n';
+	cout << bitset<40> (7340033) << '\n';
 	return 0;
 }

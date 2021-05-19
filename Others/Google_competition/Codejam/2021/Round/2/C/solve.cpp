@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 template <typename T>
 T inverse(T a, T m) {
 		T u = 0, v = 1;
@@ -13,7 +14,7 @@ T inverse(T a, T m) {
 		assert(m == 1);
 		return u;
 }
-
+	
 template <typename T>
 class Modular {
 	public:
@@ -120,7 +121,7 @@ template <typename T, typename U> Modular<T> operator*(U lhs, const Modular<T>& 
 template <typename T> Modular<T> operator/(const Modular<T>& lhs, const Modular<T>& rhs) { return Modular<T>(lhs) /= rhs; }
 template <typename T, typename U> Modular<T> operator/(const Modular<T>& lhs, U rhs) { return Modular<T>(lhs) /= rhs; }
 template <typename T, typename U> Modular<T> operator/(U lhs, const Modular<T>& rhs) { return Modular<T>(lhs) /= rhs; }
-
+	
 template<typename T, typename U>
 Modular<T> power(const Modular<T>& a, const U& b) {
 	assert(b >= 0);
@@ -172,6 +173,73 @@ using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	
+	const int maxn = 1e6 + 1;
+	vector<Mint> fact (maxn, 1);
+	for (int i = 2; i < maxn; i++) fact[i] = fact[i - 1] * i;
+	auto ncr = [&] (int n, int r) -> Mint {
+		if (r > n) return 0;
+		return fact[n] / (fact[r] * fact[n - r]);
+	};
+	int TT;
+	cin >> TT;
+	for (int ttt = 1; ttt <= TT; ttt++) {
+		int n;
+		cin >> n;
+		vector<int> A (n);
+		map <int, vector<int>> mp;
+		for (int i = 0; i < n; i++) {
+			cin >> A[i];
+			mp[A[i]].push_back (i);
+		}
+		auto ff = [&] (int l, int r, int x) -> int {
+			auto it = upper_bound(mp[x].begin(), mp[x].end(), r);
+			if (it == mp[x].begin()) return -1;
+			it--;
+			if (*it >= l) return *it;
+			return -1;
+		};
+		function<Mint(int, int, int)> f = [&] (int l, int r, int x) -> Mint {
+			if (l > r) return 1;
+			if (l == r) return A[l] == x;
+			int last = ff (l, r, x);
+			if (last == -1) return 0;
+			Mint ans = 1;
+			ans *= ncr (r - l, last - l);
+			ans *= f (l, last - 1, x);
+			ans *= f (last + 1, r, x + 1);
+			return ans;
+			// int n = a.size();
+			// if (n == 1) {
+			// 	return a.front() == 1;
+			// }
+			// int idx = -1;
+			// for (int i = 0; i < n; i++) {
+			// 	if (a[i] == 1) idx = i;
+			// 	if (a[i] <= 0 || a[i] > i + 1) return 0;
+			// }
+			// if (idx == -1) {
+			// 	return 0;
+			// }
+			// Mint ans = 1;
+			// ans *= ncr (n - 1, idx);
+			// vector<int> a1, a2;
+			// for (int i = 0; i < idx; i++) {
+			// 	a1.push_back(a[i]);
+			// }
+			// for (int i = idx + 1; i < n; i++) {
+			// 	a2.push_back(a[i] - 1);
+			// }
+			// if (a1.empty() == false) {
+			// 	ans *= f (a1);
+			// }
+			// if (a2.empty() == false) {
+			// 	ans *= f (a2);
+			// }
+			// return ans;
+
+		};
+		cout << "Case #" << ttt << ": ";
+		cout << f (0, n - 1, 1) << '\n';
+	}
 	return 0;
 }

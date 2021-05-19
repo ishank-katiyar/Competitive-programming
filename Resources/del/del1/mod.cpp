@@ -2,6 +2,10 @@
 
 using namespace std;
 
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+template<class A> A rnd(A x, A y) { return uniform_int_distribution<A> (x, y) (rng); }
+
+
 template <typename T>
 T inverse(T a, T m) {
 		T u = 0, v = 1;
@@ -172,6 +176,25 @@ using Mint = Modular<std::integral_constant<decay<decltype(md)>::type, md>>;
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	
+	const int maxn = 1e7 + 1;
+	vector<Mint> fact (maxn, 1);
+	for (int i = 1; i < maxn; i++) { 
+		fact[i] = fact[i - 1] * i;
+	}
+	auto nCr = [&] (int n, int r) -> Mint {
+		if (r > n) return 0;
+		return fact[n] / (fact[n - r] * fact[r]);
+	};
+	// int n, r;
+	// cin >> n >> r;
+	// cout << nCr (n, r) << '\n';
+	for (int i = 0; i < maxn; i++) {
+		int n = rnd (1, maxn - 1);
+		Mint x = nCr (n, rnd (1, n));
+		x++;
+		++x;
+		x--;
+		--x;
+	}
 	return 0;
 }
