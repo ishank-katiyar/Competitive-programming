@@ -111,148 +111,107 @@ Mod nCr (int n, int r) {
 	// return fact[n] / (fact[n - r] * fact[r]);	// uncommnent this if no of calls for nCr is low
 }
 
-template <typename T>
+template<typename T>
 class NTT {
- public:
-  using U = typename decay<decltype(T::value)>::type;
+public:
+	using U = typename decay<decltype(T::value)>::type;
 
-  static U md;
-  static mod<T> root;
-  static int base;
-  static int max_base;
-  static vector<mod<T>> roots;
-  static vector<int> rev;
+	static U md;
+	static mod<T> root;
+	static int base;
+	static int max_base;
+	static vector<int> rev;
+	static vector<mod<T>> roots;
 
-  static void clear() {
-    root = 0;
-    base = 0;
-    max_base = 0;
-    roots.clear();
-    rev.clear();
-  }
+	static void clear() { root = md = base = max_base = 0; rev.clear(), roots.clear(); }
 
-  static void init() {
-    md = T::value;
-    assert(md >= 3 && md % 2 == 1);
-    auto tmp = md - 1;
-    max_base = 0;
-    while (tmp % 2 == 0) {
-      tmp /= 2;
-      max_base++;
-    }
-    root = 2;
-    while (bpow (root, (md - 1) >> 1) == 1) {
-      root++;
-    }
-    assert(bpow (root, md - 1) == 1);
-    root = bpow (root, (md - 1) >> max_base);
-    base = 1;
-    rev = {0, 1};
-    roots = {0, 1};
-  }
+	static void init () {
+		md = T::value;
+		max_base = __builtin_ctz (md - 1);
+		root = 2;
+		while (bpow (root, (md - 1) / 2) == 1) { root += 1; }
+		assert (bpow (root, md - 1) == 1);
+		root = bpow (root, (md - 1) >> max_base);
+		base = 1;
+		rev = {0, 1};
+		roots = {0, 1};
+	}
 
-  static void ensure_base(int nbase) {
-    if (md != T::value) {
-      clear();
-    }
-    if (roots.empty()) {
-      init();
-    }
-    if (nbase <= base) {
-      return;
-    }
-    assert(nbase <= max_base);
-    rev.resize(1 << nbase);
-    for (int i = 0; i < (1 << nbase); i++) {
-      rev[i] = (rev[i >> 1] >> 1) + ((i & 1) << (nbase - 1));
-    }
-    roots.resize(1 << nbase);
-    while (base < nbase) {
-      mod<T> z = bpow (root, 1 << (max_base - 1 - base));
-      for (int i = 1 << (base - 1); i < (1 << base); i++) {
-        roots[i << 1] = roots[i];
-        roots[(i << 1) + 1] = roots[i] * z;
-      }
-      base++;
-    }
-  }
+	static void ensure_base (int new_base) {
+		if (md != T::value) { clear(); }
+		if (roots.empty() || rev.empty()) { init(); }
+		if (base >= new_base) { return; }
+		assert (new_base <= max_base);
+		rev.resize(1 << new_base);
+		for (int i = 0; i < (1 << new_base); i++) { rev[i] = (rev[i / 2] >> 1) | (i % 2) << (new_base - 1); }
+		roots.resize(1 << new_base);
+		while (base < new_base) {
+			const mod<T> z = bpow (root, 1 << (max_base - base - 1));
+			for (int i = 1 << (base - 1); i < (1 << base); i++) {
+				roots[i << 1] = roots[i];
+				roots[(i << 1) + 1] = roots[i] * z;
+			}
+			base++;
+		}
+	}
 
-  static void fft(vector<mod<T>> &a) {
-    int n = (int) a.size();
-    assert((n & (n - 1)) == 0);
-    int zeros = __builtin_ctz(n);
-    ensure_base(zeros);
-    int shift = base - zeros;
-    for (int i = 0; i < n; i++) {
-      if (i < (rev[i] >> shift)) {
-        swap(a[i], a[rev[i] >> shift]);
-      }
-    }
-    for (int k = 1; k < n; k <<= 1) {
-      for (int i = 0; i < n; i += 2 * k) {
-        for (int j = 0; j < k; j++) {
-          mod<T> x = a[i + j];
-          mod<T> y = a[i + j + k] * roots[j + k];
-          a[i + j] = x + y;
-          a[i + j + k] = x - y;
-        }
-      }
-    }
-  }
+	static void ntt (vector<mod<T>> &a) {
+		int n = a.size();
+		int zeros = __builtin_ctz (n);
+		ensure_base (zeros);
+		int shift = base - zeros;
+		for (int i  = 0; i < n; i++) { if (i < (rev[i] >> shift)) swap (a[i], a[rev[i] >> shift]); }
+		for (int k = 1; k < n; k *= 2) {
+			for (int i = 0; i < n; i += 2 * k) {
+				for (int j = 0; j < k; j++) {
+					mod<T> x = a[i + j], y = a[i + j + k] * roots[j + k];
+					a[i + j] = x + y;
+					a[i + j + k] = x - y;
+				}
+			}
+		}
+	}
 
-  static vector<mod<T>> multiply(vector<mod<T>> a, vector<mod<T>> b) {
-    if (a.empty() || b.empty()) {
-      return {};
-    }
-    int eq = (a == b);
-    int need = (int) a.size() + (int) b.size() - 1;
-    int nbase = 0;
-    while ((1 << nbase) < need) nbase++;
-    ensure_base(nbase);
-    int sz = 1 << nbase;
-    a.resize(sz);
-    b.resize(sz);
-    fft(a);
-    if (eq) b = a; else fft(b);
-    mod<T> inv_sz = 1 / static_cast<mod<T>>(sz);
-    for (int i = 0; i < sz; i++) {
-      a[i] *= b[i] * inv_sz;
-    }
-    reverse(a.begin() + 1, a.end());
-    fft(a);
-    a.resize(need);
-    return a;
-  }
+	static vector<mod<T>> multiply (vector<mod<T>> a, vector<mod<T>> b) {
+		if (a.empty() || b.empty()) return {};
+		int total = int (a.size() + b.size()) - 1;
+		int n = 1 << (32 - __builtin_clz(total));
+		vector<mod<T>> A (a), B (b);
+		A.resize (n), B.resize (n);
+		ntt (A);
+		if (b != a) ntt (B); else B = A;
+		mod<T> inv_n = 1 / static_cast <mod<T>> (n);
+		for (int i = 0; i < n; i++) { A[i] *= B[i] * inv_n; }
+		ntt (A);
+		reverse (A.begin() + 1, A.end());
+		A.resize (total);
+		return A;
+	}
 };
 
-template <typename T> typename NTT<T>::U NTT<T>::md;
-template <typename T> mod<T> NTT<T>::root;
-template <typename T> int NTT<T>::base;
-template <typename T> int NTT<T>::max_base;
-template <typename T> vector<mod<T>> NTT<T>::roots;
-template <typename T> vector<int> NTT<T>::rev;
+template <typename T> typename NTT <T>::U NTT <T>::md;
+template <typename T> mod<T> NTT <T>::root;
+template <typename T> int NTT <T>::base;
+template <typename T> int NTT <T>::max_base;
+template <typename T> vector<int> NTT <T>::rev;
+template <typename T> vector<mod<T>> NTT <T>::roots;
 
-template <typename T>
-vector<mod<T>> operator*(const vector<mod<T>>& a, const vector<mod<T>>& b) {
-  if (a.empty() || b.empty()) {
-    return {};
-  }
-  if (min(a.size(), b.size()) < 150) {
-    vector<mod<T>> c(a.size() + b.size() - 1, 0);
-    for (int i = 0; i < (int) a.size(); i++) {
-      for (int j = 0; j < (int) b.size(); j++) {
-        c[i + j] += a[i] * b[j];
-      }
-    }
-    return c;
-  }
-  return NTT<T>::multiply(a, b);
+template<typename T>
+vector<mod<T>> operator * (const vector<mod<T>>& A, const vector<mod<T>>& B) { 
+	if (A.empty() || B.empty()) { return {}; }
+	if (min ((int) A.size(),(int) B.size()) <= 250) {
+		vector<mod<T>> C ((int) A.size() + (int) B.size() - 1, 0);
+		for (int i = 0; i < (int) A.size(); i++) {
+			for (int j = 0; j < (int) B.size(); j++) {
+				C[i + j] += A[i] * B[j];
+			}
+	}
+		return C;
+	}
+	return NTT <T> :: multiply (A, B); 
 }
-
-template <typename T>
-vector<mod<T>>& operator*=(vector<mod<T>>& a, const vector<mod<T>>& b) {
-  return a = a * b;
-}
+template<typename T>
+vector<mod<T>> operator *= (vector<mod<T>>& A, const vector<mod<T>>& B) { return A = A * B; }
 
 class graph {
 public:
@@ -320,17 +279,5 @@ int main() {
 		cout << 6 - ans << ' ';
 	}
 	cout << '\n';
-  // Mod x = 5, y = 10;
-  // cout << 1 / x << '\n';
-  // cout << x << '\n';
-  // x += 10;
-  // x /= 5;
-  // cout << x << '\n';
-  // x *= y;
-  // x += y;
-  // x /= y;
-  // x++, --x;
-  // cout << x << '\n';
-  // cout << bpow (x, 10) << '\n';
   return 0;
 }
