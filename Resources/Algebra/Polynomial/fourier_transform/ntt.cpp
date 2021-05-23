@@ -4,25 +4,25 @@ using namespace std;
 
 template<class X, class Y, class Z = int64_t> X bpow (X a , Y b, int mod = -1) {
 	X res = static_cast<X> (1);
-	if (mod != -1 && (a < -mod || a >= mod)) { 
-    a %= mod; 
-  }
+	if (mod != -1 && (a < -mod || a >= mod)) {
+		a %= mod;
+	}
 	while(b) {
 		if(b % 2 == 1) {
 			if (mod != -1) {
-        // (res *= a) %= mod;
-        Z tmp = static_cast<Z> (1) * res * a;
-        if (tmp < -mod || tmp >= mod) tmp %= mod;
-        res = static_cast<X> (tmp);
-      }
+				// (res *= a) %= mod;
+				Z tmp = static_cast<Z> (1) * res * a;
+				if (tmp < -mod || tmp >= mod) tmp %= mod;
+				res = static_cast<X> (tmp);
+			}
 			else res *= a;
 		}
 		if (mod != -1) {
-      // (a *= a) %= mod;
-      Z tmp = static_cast<Z> (1) * a * a;
-      if (tmp < -mod || tmp >= mod) tmp %= mod;
-      a = static_cast<X> (tmp);
-    }
+			// (a *= a) %= mod;
+			Z tmp = static_cast<Z> (1) * a * a;
+			if (tmp < -mod || tmp >= mod) tmp %= mod;
+			a = static_cast<X> (tmp);
+		}
 		else a *= a;
 		b /= 2;
 	}
@@ -35,11 +35,11 @@ public:
 	constexpr static T MOD = X::value;
 	static_assert (MOD <= 3037000499);
 
-  template<typename U>
+	template<typename U>
 	T normalize(const U& x) {
-    T y;
+		T y;
 		if (x < -MOD || x >= MOD) y = static_cast<T> (x % MOD);
-    else y =  static_cast<T> (x);
+		else y =  static_cast<T> (x);
 		if (y < 0) y += MOD;
 		return y;
 	}
@@ -48,9 +48,9 @@ public:
 	template<typename U> mod (const U& x) : value(normalize(x)) {}
 
 	const T& operator ()() const { return value; }
-	template<typename U> mod<U> inverse (const mod<U>& x) { 
-    return mod<U> (bpow <typename decay<decltype(U::value)>::type, typename decay<decltype(U::value)>::type> (x.value, U::value - 2, U::value)); 
-  }
+	template<typename U> mod<U> inverse (const mod<U>& x) {
+		return mod<U> (bpow <typename decay<decltype(U::value)>::type, typename decay<decltype(U::value)>::type> (x.value, U::value - 2, U::value));
+	}
 
 	template <typename U> friend ostream& operator << (ostream& out, const mod<U>& x) { out << x.value; return out; }
 	template <typename U> friend istream& operator >> (istream& in, mod<U>& x) { typename decay<decltype(U::value)>::type tmp; in >> tmp; x = mod<U> (tmp); return in; }
@@ -88,9 +88,9 @@ public:
 	template <typename U, typename V> friend mod<U> operator / (V a, const mod<U>& b) { return mod(a) /= b; }
 	template <typename U, typename V> friend mod<U> operator / (const mod<U>& a, V b) { return mod(a) /= b; }
 	template <typename U> friend string to_string (const mod<U>& x) { return to_string(x.value); }
-  template <typename U, typename V> friend mod<U> bpow (mod<U> a, V b) {
-    return mod<U> (bpow <typename decay<decltype(U::value)>::type, V> (a.value, b, U::value));
-  }
+	template <typename U, typename V> friend mod<U> bpow (mod<U> a, V b) {
+		return mod<U> (bpow <typename decay<decltype(U::value)>::type, V> (a.value, b, U::value));
+	}
 private:
 	T value;
 };
@@ -197,7 +197,7 @@ template <typename T> vector<int> NTT <T>::rev;
 template <typename T> vector<mod<T>> NTT <T>::roots;
 
 template<typename T>
-vector<mod<T>> operator * (const vector<mod<T>>& A, const vector<mod<T>>& B) { 
+vector<mod<T>> operator * (const vector<mod<T>>& A, const vector<mod<T>>& B) {
 	if (A.empty() || B.empty()) { return {}; }
 	if (min ((int) A.size(),(int) B.size()) <= 250) {
 		vector<mod<T>> C ((int) A.size() + (int) B.size() - 1, 0);
@@ -208,7 +208,7 @@ vector<mod<T>> operator * (const vector<mod<T>>& A, const vector<mod<T>>& B) {
 		}
 		return C;
 	}
-	return NTT <T> :: multiply (A, B); 
+	return NTT <T> :: multiply (A, B);
 }
 template<typename T>
 vector<mod<T>> operator *= (vector<mod<T>>& A, const vector<mod<T>>& B) { return A = A * B; }
@@ -216,6 +216,6 @@ vector<mod<T>> operator *= (vector<mod<T>>& A, const vector<mod<T>>& B) { return
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	
+
 	return 0;
 }
