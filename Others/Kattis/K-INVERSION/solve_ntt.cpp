@@ -205,7 +205,7 @@ vector<mod<T>> operator * (const vector<mod<T>>& A, const vector<mod<T>>& B) {
 			for (int j = 0; j < (int) B.size(); j++) {
 				C[i + j] += A[i] * B[j];
 			}
-		}
+	}
 		return C;
 	}
 	return NTT <T> :: multiply (A, B); 
@@ -216,6 +216,22 @@ vector<mod<T>> operator *= (vector<mod<T>>& A, const vector<mod<T>>& B) { return
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	
+	string s;
+	cin >> s;
+	int n = s.size();
+	vector<Mod> a (2 * n), b (2 * n);
+	for (int i = 0; i < n; i++) {
+		if (s[i] == 'B') b[i] = 1;
+		else a[i] = 1;
+	}
+	n *= 2;
+	reverse (a.begin(), a.end());
+	for (int i = 0; i < n; i++) a.push_back (0);
+	for (int i = 0; i < n; i++) b.push_back (b[i]);
+	// debug (a, b);
+	a *= b;
+	int cnt = n / 2 - 1;
+	// for (int i = 2 * n - 2; cnt-- ; i++) cout << a[i] << '\n';
+	for (int i = 2 * n - 2; cnt-- ; i--) cout << a[i] << '\n';
 	return 0;
 }
