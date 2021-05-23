@@ -230,7 +230,7 @@ void LinearPhi (const int n) {
 }
 
 template<class X> X Phi (X n) {
-	cerr << "Run LinearSieve if not LinearPhi for faster complexity of Phi(n) ;)" << '\n';\
+	if (phi.empty() && prime.empty()) { cerr << "Run LinearSieve if not LinearPhi for faster complexity of Phi(n) ;)" << '\n'; }
 	if (n < (int) phi.size()) { return phi[n]; }
 	X ret = n;
 	for (auto& i: prime_factors(n)) { ret -= (ret / i); }
@@ -331,8 +331,12 @@ int main() {
 	// 	cin >> a >> b >> m;
 	// 	cout << Modular_Arithmetics::Discrete_Logarithm <int64_t> (a, b, m) << '\n';
 	// }
-	cout << Modular_Arithmetics::generator <int64_t> (1107296257) << '\n';
-	cout << Modular_Arithmetics::generator <int64_t> (2281701377) << '\n';
-	cout << bitset<40> (7340033) << '\n';
+	// cout << Modular_Arithmetics::generator <int64_t> (998244353) << '\n';
+	// cout << Modular_Arithmetics::generator <int64_t> (1107296257) << '\n';
+	// cout << Modular_Arithmetics::generator <int64_t> (2281701377) << '\n';
+	// cout << bitset<40> (7340033) << '\n';
+	// const int maxn = 1e5 + 1;
+	// Factorisation::LinearSieve(maxn);
+	// for (auto& i: Factorisation::prime) cout << Modular_Arithmetics::generator <int64_t> (i) << '\n';
 	return 0;
 }

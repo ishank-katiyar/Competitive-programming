@@ -10,28 +10,13 @@ public:
 	vector<pair<int, int>> edge;
 	vector<int> depth;
 	vector<bool> covered;
-
-	graph (int N) {
-		n = N;
-		adj.assign(n + 1, vector<int> ());
-		degree.assign(n + 1, 0);
-		depth.assign(n + 1, 0);
-		covered.assign(n + 1, false);
-	}
-
+	graph (int N): n (N), adj (vector<vector<int>> (n)), degree (vector<int> (n)), depth (vector<int> (n)), covered (vector<bool> (n, false)) {}
 	void add (int X, int Y) {
 		degree[X]++, degree[Y]++;
 		edge.emplace_back(X, Y);
 		adj[X].push_back(Y);
 		adj[Y].push_back(X);
 	}
-
-	void do_dfs (int N) {
-		covered.assign(n + 1, false);
-		depth[N] = 0;
-		dfs(N);
-	}
-
 	void dfs (int N) {
 		if (covered[N] == true) return;
 		covered[N] = true;
