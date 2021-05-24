@@ -1,0 +1,245 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+template <typename dbl> struct cplx {
+	dbl x, y;
+	cplx(dbl x_ = 0, dbl y_ = 0) : x(x_), y(y_) { }
+	friend cplx operator+(cplx a, cplx b) { return cplx(a.x + b.x, a.y + b.y); }
+	friend cplx operator-(cplx a, cplx b) { return cplx(a.x - b.x, a.y - b.y); }
+	friend cplx operator*(cplx a, cplx b) { return cplx(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x); }
+	friend cplx conj(cplx a) { return cplx(a.x, -a.y); }
+	friend cplx inv(cplx a) { dbl n = (a.x*a.x+a.y*a.y); return cplx(a.x/n,-a.y/n); }
+};
+
+string to_string(string s) 																		{ return '"' + s + '"'; }
+string to_string(const char* ch) 															{ return string(ch); }
+string to_string(char ch) 																		{ return (string)"'" + ch + (string)"'"; }
+string to_string(bool b) 																			{ return (b ? "true" : "false"); }
+template<class A, class B> string to_string(pair<A, B> p) 		{ return "(" + to_string(p.first) + ", " + to_string(p.second) + ")"; }
+string to_string(complex<double> a) { return "(" + to_string (real(a)) + ", " + to_string(imag(a)) + ")"; }
+string to_string(vector<complex<double>> a) {
+	string res = "{";
+	bool first = true;
+	int n = a.size();
+	for(int i = 0; i < n; i++) {
+		auto x = a[i];
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+string to_string(cplx<double> a) { return "(" + to_string ((a.x)) + ", " + to_string((a.y)) + ")"; }
+string to_string(vector<cplx<double>> a) {
+	string res = "{";
+	bool first = true;
+	int n = a.size();
+	for(int i = 0; i < n; i++) {
+		auto x = a[i];
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+template<class A> string to_string(A a) {
+	string res = "{";
+	bool first = true;
+	for(const auto& x: a) {
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+void debug() {cerr << "]\n";}
+template<class H, class... T> void debug(H head, T... tail) 	{ cerr << to_string(head) << " "; debug(tail...); }
+
+#ifdef LOCAL
+	#define debug(...) cerr << "[" << #__VA_ARGS__ << " ] = ["; debug(__VA_ARGS__);
+#else 
+	#define debug(...) 
+#endif
+
+class graph {
+public:
+	int n;
+	vector<vector<int>> adj;
+	vector<int> degree;
+	vector<pair<int, int>> edge;
+	vector<int> depth;
+	vector<bool> covered;
+	graph (int N): n (N), adj (vector<vector<int>> (n)), degree (vector<int> (n)), depth (vector<int> (n)), covered (vector<bool> (n, false)) {}
+	void add (int X, int Y) {
+		degree[X]++, degree[Y]++;
+		edge.emplace_back(X, Y);
+		adj[X].push_back(Y);
+		adj[Y].push_back(X);
+	}
+	void dfs (int N) {
+		if (covered[N] == true) return;
+		covered[N] = true;
+		for (int i: adj[N]) {
+			if (covered[i] == false) {
+				depth[i] = depth[N] + 1;
+				dfs(i);
+			} 
+		}
+	}
+};
+
+// using cd = complex<double>;
+using cd = cplx<double>;
+const double PI = acos (-1);
+
+class FFT {
+public:
+	static int base;
+	static vector<int> rev;
+	static vector<cd> roots;
+
+	static void init() {
+		rev = {0, 1};
+		roots = vector<cd> (2, 1);
+		base = 1;
+	}
+
+	static void ensure_base (int new_base) {
+		if (roots.empty() || rev.empty()) { init(); }
+		if (base >= new_base) { return; }
+		rev.resize(1 << new_base);
+		for (int i = 0; i < (1 << new_base); i++) { rev[i] = ((rev[i / 2] >> 1) | (i % 2) << (new_base - 1)); }
+		roots.resize (1 << new_base);
+		while (base < new_base) {
+			const auto z1 = polar (1.0, PI / (1 << base));
+			const auto z = cd (real (z1), imag (z1));
+			for (int i = (1 << (base - 1)); i < (1 << base); i++) {
+				roots[i << 1] = roots[i];
+				roots[(i << 1) + 1] = roots[i] * z;
+			}
+			base++;
+		}
+	}
+
+	static void fft (vector<cd> &a) {
+		int n = a.size();
+		int zeros = __builtin_ctz (n);
+		ensure_base (zeros);
+		int shift = base - zeros;
+		for (int i = 0; i < n; i++) { if (i < (rev[i] >> shift)) swap (a[i], a[rev[i] >> shift]); }
+		for (int k = 1; k < n; k *= 2) { 
+			for (int i = 0; i < n; i += 2 * k) {
+				for (int j = 0; j < k; j++) {
+					auto x = a[i + j], y = a[i + j + k] * roots[k + j];
+					a[i + j] = x + y;
+					a[i + j + k] = x - y;
+				}
+			}
+		}
+	}
+
+	template<typename T> 
+	static vector<T> multiply (vector<T> a, vector<T> b) {
+		if (a.empty() || b.empty()) return {};
+		int total = int (a.size() + b.size()) - 1;
+		int n = 1 << (32 - __builtin_clz(total));
+		debug (total, n);
+		// vector<cd> A (a.begin(), a.end()), B (b.begin(), b.end());
+		// vector<cd> A (a.begin(), a.end()), B (n);
+		// A.resize (n);
+		// for (int i = 0; i < int (b.size ()); i++) A[i].imag(b[i]);
+		vector<cd> A (n), B (n);
+		for (int i = 0; i < n; i++) {
+			T x = (i < int(a.size()) ? a[i] : 0);
+			T y = (i < int(b.size()) ? b[i] : 0);
+			A[i] = cd (x, y);
+		}
+		fft (A);
+		for (auto& i: A) { i = i * i; }
+		for (int i = 0; i < n; i++) {
+			B[i] = A [(-i) & (n - 1)] - conj (A[i]);
+		}
+		fft (B);
+		debug (B);
+		// if (A != B) fft (B); else B = A;
+		// debug (A);
+		// debug (B);
+		// for (int i = 0; i < n; i++) { A[i] *= B[i] / cd (n); }
+		// fft (A);
+		// debug (A);
+		// reverse (A.begin() + 1, A.end());
+		vector<T> res (total);
+		for (int i = 0; i < total; i++) {
+			// res[i] = round(A[i].real());
+			res[i] =  (round (B[i].y)) / (4 * n);
+		}
+		return res;
+	}
+};
+
+int FFT::base;
+vector<int> FFT::rev;
+vector<cd> FFT::roots;
+template<typename T> vector<T> operator *  (const vector<T>& A, const vector<T>& B) { 
+	if (min ((int) A.size(),(int) B.size()) < 0) {
+		vector<T> C ((int) A.size() + (int) B.size() - 1);
+		for (int i = 0; i < (int) A.size(); i++) {
+			for (int j = 0; j < (int) B.size(); j++) {
+				C[i + j] += A[i] * B[j];
+			}
+		}
+		return C;
+	}
+	return FFT::multiply <T> (A, B); 
+}
+template<typename T> vector<T> operator *= (vector<T>& A, const vector<T>& B) 			{ return A = A * B; }
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	string s, t;
+	cin >> s >> t;
+	int n = s.size(), m = t.size();
+	while (t.size() < s.size()) t += "z";
+	assert (t.size() == s.size());
+	vector<graph> gr (n - m + 1, graph(6));
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 6; j++) {
+			if (i == j) continue;
+			vector<int> a (n), b (n);
+			for (int k = 0; k < n; k++) {
+				if (int(s[k] - 'a') == i) a[k] = 1;
+				if (int(t[k] - 'a') == j) b[k] = 1;
+			}
+			// debug (i, j, a, b);
+			reverse(a.begin(), a.end());
+			for (int k = 0; k < n; k++) a.push_back(0), b.push_back(b[k]);
+			a *= b;
+			// debug (a);
+			for (int k = 2 * n - 1, cnt = 0; cnt < n - m + 1; k--, cnt++) {
+				if (a[k]) {
+					debug (i, j, cnt);
+					gr[cnt].add (i, j);
+				}
+			}
+		}
+	}
+	for (int i = 0; i < n - m + 1; i++) {
+		int ans = 0;
+		debug (i, gr[i].adj);
+		for (int j = 0; j < 6; j++) {
+			if (gr[i].covered[j] == false) {
+				gr[i].dfs (j);
+				ans += 1;
+			}
+		}
+		cout << 6 - ans << ' ';
+	}
+	cout << '\n';
+	return 0;
+}

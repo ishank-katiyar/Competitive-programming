@@ -10,9 +10,62 @@ template <typename dbl> struct cplx {
 	friend cplx operator*(cplx a, cplx b) { return cplx(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x); }
 	friend cplx conj(cplx a) { return cplx(a.x, -a.y); }
 	friend cplx inv(cplx a) { dbl n = (a.x*a.x+a.y*a.y); return cplx(a.x/n,-a.y/n); }
-	friend string to_string (cplx a) { return "(" + to_string(a.x) + ", " + to_string(a.y) + ")"; }
 };
 
+string to_string(string s) 																		{ return '"' + s + '"'; }
+string to_string(const char* ch) 															{ return string(ch); }
+string to_string(char ch) 																		{ return (string)"'" + ch + (string)"'"; }
+string to_string(bool b) 																			{ return (b ? "true" : "false"); }
+template<class A, class B> string to_string(pair<A, B> p) 		{ return "(" + to_string(p.first) + ", " + to_string(p.second) + ")"; }
+string to_string(complex<double> a) { return "(" + to_string (real(a)) + ", " + to_string(imag(a)) + ")"; }
+string to_string(vector<complex<double>> a) {
+	string res = "{";
+	bool first = true;
+	int n = a.size();
+	for(int i = 0; i < n; i++) {
+		auto x = a[i];
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+string to_string(cplx<double> a) { return "(" + to_string ((a.x)) + ", " + to_string((a.y)) + ")"; }
+string to_string(vector<cplx<double>> a) {
+	string res = "{";
+	bool first = true;
+	int n = a.size();
+	for(int i = 0; i < n; i++) {
+		auto x = a[i];
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+template<class A> string to_string(A a) {
+	string res = "{";
+	bool first = true;
+	for(const auto& x: a) {
+		if(first == false) res += ", ";
+		first = false;
+		res += to_string(x);
+	}
+	res += "}";
+	return res;
+}
+void debug() {cerr << "]\n";}
+template<class H, class... T> void debug(H head, T... tail) 	{ cerr << to_string(head) << " "; debug(tail...); }
+
+#ifdef LOCAL
+	#define debug(...) cerr << "[" << #__VA_ARGS__ << " ] = ["; debug(__VA_ARGS__);
+#else 
+	#define debug(...) 
+#endif
+
+// using cd = complex<double>;
 using cd = cplx<double>;
 const double PI = acos (-1);
 
@@ -67,6 +120,11 @@ public:
 		if (a.empty() || b.empty()) return {};
 		int total = int (a.size() + b.size()) - 1;
 		int n = 1 << (32 - __builtin_clz(total));
+		debug (total, n);
+		// vector<cd> A (a.begin(), a.end()), B (b.begin(), b.end());
+		// vector<cd> A (a.begin(), a.end()), B (n);
+		// A.resize (n);
+		// for (int i = 0; i < int (b.size ()); i++) A[i].imag(b[i]);
 		vector<cd> A (n), B (n);
 		for (int i = 0; i < n; i++) {
 			T x = (i < int(a.size()) ? a[i] : 0);
@@ -79,8 +137,17 @@ public:
 			B[i] = A [(n - i) & (n - 1)] - conj (A[i]);
 		}
 		fft (B);
+		debug (B);
+		// if (A != B) fft (B); else B = A;
+		// debug (A);
+		// debug (B);
+		// for (int i = 0; i < n; i++) { A[i] *= B[i] / cd (n); }
+		// fft (A);
+		// debug (A);
+		// reverse (A.begin() + 1, A.end());
 		vector<T> res (total);
 		for (int i = 0; i < total; i++) {
+			// res[i] = round(A[i].real());
 			res[i] =  (llround (B[i].y)) / (4 * n);
 		}
 		return res;
@@ -143,7 +210,7 @@ vector<int> FFT::rev;
 vector<cd> FFT::roots;
 
 template<typename T> vector<T> operator *  (const vector<T>& A, const vector<T>& B) { 
-	if (min ((int) A.size(),(int) B.size()) <= 250) {
+	if (min ((int) A.size(),(int) B.size()) < 0) {
 		vector<T> C ((int) A.size() + (int) B.size() - 1);
 		for (int i = 0; i < (int) A.size(); i++) {
 			for (int j = 0; j < (int) B.size(); j++) {
@@ -159,6 +226,47 @@ template<typename T> vector<T> operator *= (vector<T>& A, const vector<T>& B) { 
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-	
-	return 0;
+	int n, m, k;
+	cin >> n >> m >> k;
+	map <int, int> mp;
+	for (int i = 0; i < n; i++) {
+		int x;
+		cin >> x;
+		mp[x]++;
+	}
+	vector<pair<int, vector<int64_t>>> a;
+	// multiset<int> s;
+	for (auto& i: mp) {
+		a.push_back (make_pair (i.second, vector<int64_t> (i.second + 1, 1)));
+		// s.insert (i.second);
+	}
+	// sort (a.rbegin(), a.rend());
+	// for (int i = 1; i < int (a.size()); i++) {
+	// 	vector<int64_t> cur (a[i].first + 1, 1);
+	// 	ans = FFT::multiply_mod (ans, cur, 1009);
+	// }
+	// vector<int64_t> ans(*s.begin() + 1, 1);
+	// s.erase (s.begin());
+	// while (s.empty() == false) {
+	// 	auto it = s.upper_bound ((int) ans.size());
+	// 	if (it != s.begin()) it--;
+	// 	vector<int64_t> cur (*it + 1, 1);
+	// 	ans *= cur;
+	// 	s.erase (it);
+	// }
+	while (a.size() > 1) {
+		sort (a.begin(), a.end());
+		vector<pair<int, vector<int64_t>>> b;
+		for (int i = 0; i + 1 < int (a.size()); i += 2) {
+			auto xx = FFT::multiply_mod (a[i].second, a[i + 1].second, 1009);
+			debug (a[i].second, a[i + 1].second, xx);
+			b.push_back (make_pair (xx.size(), xx));
+		}
+		if (int(a.size()) % 2 == 1) b.push_back (a.back ());
+		a = b;
+	}
+	assert (int (a.size()) == 1);
+	// cout << ans[k] << '\n';
+	cout << a.front().second[k] << '\n';
+	return 0;	
 }
