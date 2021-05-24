@@ -17,9 +17,8 @@ int main() {
 			(a[i] < 0 ? neg : pos) += 1;
 		}
 		sort (a.begin(), a.end());
-		auto f = [&] (const int x) -> int {
+		auto f = [&] (int x) -> int {
 			vector<int> diff;
-			if (a.front() == x) return 1;
 			int idx = -1;
 			for (int i = 0; i < n; i++) {
 				if (a[i] == x) idx = i;
