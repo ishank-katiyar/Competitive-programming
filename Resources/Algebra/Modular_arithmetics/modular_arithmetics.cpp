@@ -239,7 +239,7 @@ template<class X> X Phi (X n) {
 
 }; // end namespace factorisation
 
-namespace Modular_Arithmetics {
+namespace ModularArithmetics {
 
 //----------------------------------------------------------------
 // contain basic function like discrete logarithm, primitive root, discrete root

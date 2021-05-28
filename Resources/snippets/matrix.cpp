@@ -55,6 +55,7 @@ template<class X> matrix<X> matrix<X>::operator - (matrix<X> b) {
 	for(int i = 0; i < row; i++) { for(int j = 0; j < column; j++) M[i][j] -= b[i][j]; }
 	return *this;
 }
+// checkout "https://codeforces.com/blog/entry/69685?#comment-541939 - block matrix multiplication - efficient caching"
 template<class X> matrix<X> matrix<X>::operator * (matrix<X> b) {
 	if(column != b.row) { throw logic_error("Multiplication of martices with different Dimensions"); }
 	int r = row, col = b.column;
