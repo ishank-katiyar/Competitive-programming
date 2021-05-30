@@ -1,13 +1,27 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
 string to_string(string s) { return '"' + s + '"'; }
 string to_string(const char* ch) { return string(ch); }
 string to_string(char ch) { return (string)"'" + ch + (string)"'"; }
 string to_string(bool b) { return (b ? "true" : "false"); }
 template<class A, class B>
 string to_string(pair<A, B> p) { return "(" + to_string(p.first) + ", " + to_string(p.second) + ")"; }
+
+
+string to_string(vector<bool> v) {
+	bool first = true;
+	string res = "{";
+	for (const bool& x: v) { if (!first) res += ", ";  first = false, res += to_string(x); }
+	res += "}";
+	return res;
+}
+template <size_t N> string to_string(bitset<N> v) {
+	string res = "";
+	for (size_t i = 0; i < N; i++) { res += static_cast<char>('0' + v[i]); }
+	return to_string(res);
+}
+
 template<class A>
 string to_string(A a) {
 	string res = "{";
@@ -28,6 +42,8 @@ template<class H, class... T> void debug(H head, T... tail) 	{ cerr << to_string
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
-
+	vector<bool> a({0, 1});
+	bitset<10> bs (10);
+	debug (a, bs);
 	return 0;
 }

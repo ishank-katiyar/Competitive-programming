@@ -61,7 +61,7 @@ A rnd(A x, A y) {
 	return uniform_int_distribution<A> (x, y) (rng);
 }
 
-namespace euclid {
+namespace Euclid {
 /*
 * rule = gcd (a, b) = gcd (b, a ope b);
 * ope = any operation which doesnt add there factors together (like multiply,
@@ -164,7 +164,7 @@ vector<pair<T, T>> dophantine_equation (T a, T b, T c, bool get_only_one_solutio
 
 }; // end of namespace euclid
 
-using namespace euclid;
+using namespace Euclid;
 
 int main() 
 {
