@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -7,7 +9,11 @@ public:
 	static std::string to_string(const T x) { return std::to_string(x); }
 
 	template<typename T, typename std::enable_if<std::is_floating_point<T>::value>::type* = nullptr>
-	static std::string to_string(const T x) { std::stringstream tmp; tmp << std::fixed << std::setprecision(float_precision) << x; return tmp.str(); }
+	static std::string to_string(const T x) {
+		std::stringstream tmp;
+		tmp << std::fixed << std::setprecision(float_precision) << x;
+		return tmp.str();
+	}
 
 	static std::string to_string(const std::string s) { return "\"" + s + "\""; }
 	static std::string to_string(const char* ch) { return std::string(ch); }
@@ -44,9 +50,14 @@ public:
 	template<typename T> struct has_begin_end : decltype(has_begin_end_impl::test<T>(0)) {};
 
 	template<typename T, typename std::enable_if<has_const_iterator<T>::value && has_begin_end<T>::value>::type* = nullptr>
-	static std::string to_string(const T a) { std::string res = "{"; bool first = true; for(const auto& x: a) { if(first == false) res += ", "; first = false, res += to_string(x); } res += "}"; return res; }
+	static std::string to_string(const T& a) {
+		std::string res = "{";
+		bool first = true;
+		for(const auto& x: a) { if(first == false) res += ", "; first = false, res += to_string(x); }
+		res += "}";
+		return res;
+	}
 };
-
 void debug() { std::cerr << "]" << std::endl; }
 template<class H, class... T>
 void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; debug(tail...); }
@@ -57,8 +68,29 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 #endif
 
 int main() {
-	std::ios_base::sync_with_stdio(0);
-	std::cin.tie(0);
-
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vector<int64_t> a (n);
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+		}
+		vector<pair<int, pair<int, int>>> ans;
+		for (int i = 0; i < n; i += 2) {
+			ans.push_back({2, {i, i + 1}});
+			ans.push_back({1, {i, i + 1}});
+			ans.push_back({1, {i, i + 1}});
+			ans.push_back({2, {i, i + 1}});
+			ans.push_back({1, {i, i + 1}});
+			ans.push_back({1, {i, i + 1}});
+		}
+		assert (int(ans.size()) <= 5000);
+		cout << ans.size() << '\n';
+		for (auto& i: ans) cout << i.first << ' ' << i.second.first + 1 << ' ' << i.second.second + 1 << '\n';
+	}
 	return 0;
 }
