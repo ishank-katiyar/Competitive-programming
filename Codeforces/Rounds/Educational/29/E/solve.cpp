@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -56,9 +58,91 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 	#define debug(...)
 #endif
 
-int main() {
-	std::ios_base::sync_with_stdio(0);
-	std::cin.tie(0);
+template <typename T, typename F = function <T (const T &, const T &)>>
+class SparseTable {
+protected:
+	int n;
+	vector<vector<T>> st;
+	F func;
+public:
+	SparseTable () {}
+	SparseTable (const vector<T>& a, const F& f) : n (static_cast<int>(a.size())), func (f) {
+		assert (n > 0);
+		int k = 32 - __builtin_clz (n);
+		st.assign (k, vector<T> (n + 1));
+		build (a);
+	}
 
+	void build (const vector<T>& a) {
+		int k = 32 - __builtin_clz (n);
+		st[0] = a;
+		for (int j = 1; j < k; j++) {
+			for (int i = 0; i + (1 << j) <= n; i++) {
+				st[j][i] = func (st[j - 1][i], st[j - 1][i + (1 << (j - 1))]);
+			}
+		}
+	}
+};
+
+template <typename T, typename F = function <T (const T &, const T &)>>
+class RangeQuery : public SparseTable <T, F> {
+	using U = SparseTable<T, F>;
+public:
+	RangeQuery () {}
+	RangeQuery (const vector<T>& a, const F& f) : U (a, f) {}
+	T get (const int l, const int r) {
+		assert (0 <= l && l <= r && r < U::n);
+		int lg = 31 - __builtin_clz (r - l + 1);
+		return U::func (U::st[lg][l], U::st[lg][r - (1 << lg) + 1]);
+	}
+};
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin >> n;
+	vector<pair<pair<int, int>, int>> a (n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i].first.first >> a[i].first.second;
+		a[i].second = i;
+	}
+	sort (a.begin(), a.end(), [] (const pair<pair<int, int>, int> A, const pair<pair<int, int>, int> B) -> bool {
+		if (A.first.first == B.first.first) return A.first.second < B.first.second;
+		return A.first.first < B.first.first;
+	});
+	debug (a)
+	vector<int> an_a;
+	for (auto& i: a) an_a.push_back(i.first.second);
+	RangeQuery rmq (an_a, [] (int x, int y) -> int { return max (x, y); });
+	int idx = -2;
+	if (n > 1) {
+		if (a[1].first.first <= a[0].first.first) idx = a[0].second;
+	}
+	int mx = a[0].first.second;
+	for (int i = 1; i < n - 1; i++) {
+		int idx1 = upper_bound (a.begin(), a.end(), make_pair(make_pair(mx + 1, INT_MIN), INT_MIN)) - a.begin();
+		if (idx1 == n || a[idx1].first.first > mx + 1) idx1 -= 1;
+		debug (i, idx1)
+		if (idx1 > i) {
+			assert (mx + 1 >= a[idx1].first.first);
+			int xx = rmq.get (i + 1, idx1);
+			if (xx >= a[i].second) idx = a[i].second;
+		}
+		if (a[i].first.second <= mx) idx = a[i].second;
+		int idx2 = upper_bound (a.begin(), a.end(), make_pair(make_pair(a[i].first.first, INT_MAX), INT_MAX)) - a.begin();
+		debug (i, idx2)
+		if (idx2 == n || a[i].first.first < a[idx2].first.first) idx2 -= 1;
+		assert (a[i].first.first == a[idx2].first.first);
+		debug (i, idx2)
+		if (idx2 > i) {
+			if (rmq.get (i + 1, idx2) >= a[i].first.second) idx = a[i].second;
+		}
+		mx = max (mx, a[i].first.second);
+	}
+	if (n - 2 >= 0) {
+		if (mx >= a[n - 1].first.second) idx = a[n - 1].second;
+	}
+	cout << idx + 1 << '\n';
 	return 0;
 }

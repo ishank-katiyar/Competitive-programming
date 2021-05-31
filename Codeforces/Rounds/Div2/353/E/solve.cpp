@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -24,9 +26,9 @@ public:
 	template<typename... T>
 	static std::string to_string(const std::tuple<T...> a) { std::vector<std::string> __vector_tuple; print_tuple<std::tuple_size<decltype(a)>::value - 1, T...>{}(a, __vector_tuple); std::reverse (__vector_tuple.begin(), __vector_tuple.end()); return to_string(__vector_tuple); }
 
-	static std::string to_string(const std::vector<bool> v) { bool first = true; std::string res = "{"; for (const bool x: v) { if (!first) res += ", ";  first = false, res += to_string(x); } res += "}"; return res; }
+	static std::string to_string(const std::vector<bool>& v) { bool first = true; std::string res = "{"; for (const bool& x: v) { if (!first) res += ", ";  first = false, res += to_string(x); } res += "}"; return res; }
 	template <size_t N>
-	static std::string to_string(const std::bitset<N> v) { std::string res = ""; for (size_t i = 0; i < N; i++) { res += static_cast<char> ('0' + v[i]); } return to_string(res); }
+	static std::string to_string(const std::bitset<N>& v) { std::string res = ""; for (size_t i = 0; i < N; i++) { res += static_cast<char> ('0' + v[i]); } return to_string(res); }
 
 	template<typename ...T>
 	static std::string to_string(const std::queue<T...> A) { auto a = A; if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_back = a.front(); std::vector<decltype(tmp_back)> res; while(a.empty() == false) { res.push_back(a.front()); a.pop(); } return to_string(res); }
@@ -56,9 +58,80 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 	#define debug(...)
 #endif
 
-int main() {
-	std::ios_base::sync_with_stdio(0);
-	std::cin.tie(0);
+template <typename T, typename F = function <T (const T&, const T&)>>
+class DisjointSparseTable {
+protected:
+	int k; // n = 2 ^ k;
+	vector<vector<T>> dst;
+	F func;
+public:
+	DisjointSparseTable (vector<T> a, const F& f) : func(f) {
+		assert (a.empty() == false);
+		k = 32 - __builtin_clz (static_cast <int> (a.size()));
+		int n = 1 << k;
+		a.resize(n);
+		dst.assign (k, vector<T> (n));
+		build (a);
+	}
 
+	void build (const vector<T>& a) {
+		const int n = a.size();
+		assert ((n & (n - 1)) == 0);
+		assert ((1 << k) == n);
+		for (int height = 0; height < k; height++) {
+			for (int node = 0; node < (1 << height); node++) {
+				int L = node * (n >> height);
+				int R = L + (n >> height);
+				int M = (L + R) / 2;
+				dst[height][M] = a[M];
+				for (int idx = M + 1; idx < R; idx++) {
+					dst[height][idx] = func (dst[height][idx - 1], a[idx]);
+				}
+				assert (M > 0);
+				dst[height][M - 1] = a[M - 1]; // might overflow here
+				for (int idx = M - 2; idx >= L; idx--) {
+					dst[height][idx] = func (dst[height][idx + 1], a[idx]);
+				}
+			}
+		}
+	}
+};
+
+template <typename T, typename F = function <T (const T&, const T&)>>
+class RangeQuery : public DisjointSparseTable <T, F> {
+	using U = DisjointSparseTable<T, F>;
+public:
+	RangeQuery (vector<T> a, const F& f) : U (a, f) {}
+	T get (const int& L, const int& R) {
+		if (L == R) { return U::dst.back()[L]; }
+		assert (L < R);
+		const int height = U::k - (31 - __builtin_clz (L ^ R)) - 1;
+		return U::func (U::dst[height][L], U::dst[height][R]);
+	}
+};
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	int n;
+	cin >> n;
+	vector<pair<int, int>> a (n + 1);
+	for (int i = 1; i <= n - 1; i++) {
+		cin >> a[i].first;
+		a[i].second = i;
+	}
+	a[n] = {n, n};
+	RangeQuery rmq (a, [](pair<int, int> x, pair<int, int> y) -> pair<int, int> { return x.first > y.first ? x : y; });
+	vector<int64_t> dp (n + 1);
+	dp[n] = 0;
+	int64_t sum = 0;
+	for (int i = n - 1; i >= 1; i--) {
+		auto p = rmq.get (i + 1, a[i].first);
+		debug (i, p)
+		int idx = p.second;
+		dp[i] = dp[idx] - (a[i].first - idx) + n - i;
+		sum += dp[i];
+	}
+	cout << sum << '\n';
 	return 0;
 }
