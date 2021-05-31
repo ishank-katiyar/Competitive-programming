@@ -10,7 +10,7 @@ public:
 	static std::string to_string(const T x) { std::stringstream tmp; tmp << std::fixed << std::setprecision(float_precision) << x; return tmp.str(); }
 
 	static std::string to_string(const std::string s) { return "\"" + s + "\""; }
-	static std::string to_string(const char* ch) { return std::string(ch); }
+	static std::string to_string(const char* ch) { return to_string(std::string(ch)); }
 	static std::string to_string(const char ch) { return "\'" + std::string(1, ch) + "\'"; }
 	static std::string to_string(const bool b) { return (b ? "true" : "false"); }
 
@@ -29,11 +29,11 @@ public:
 	static std::string to_string(const std::bitset<N>& v) { std::string res = ""; for (size_t i = 0; i < N; i++) { res += static_cast<char> ('0' + v[i]); } return to_string(res); }
 
 	template<typename ...T>
-	static std::string to_string(std::queue<T...> a) { if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_back = a.front(); std::vector<decltype(tmp_back)> res; while(a.empty() == false) { res.push_back(a.front()); a.pop(); } return to_string(res); }
+	static std::string to_string(const std::queue<T...> A) { auto a = A; if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_back = a.front(); std::vector<decltype(tmp_back)> res; while(a.empty() == false) { res.push_back(a.front()); a.pop(); } return to_string(res); }
 	template<typename ...T>
-	static std::string to_string(std::stack<T...> a) { if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_top = a.top(); std::vector<decltype(tmp_top)> res; while(a.empty() == false) { res.push_back(a.top()); a.pop(); } return to_string(res); }
+	static std::string to_string(const std::stack<T...> A) { auto a = A; if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_top = a.top(); std::vector<decltype(tmp_top)> res; while(a.empty() == false) { res.push_back(a.top()); a.pop(); } return to_string(res); }
 	template<typename ...T>
-	static std::string to_string(std::priority_queue<T...> a) { if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_top = a.top(); std::vector<decltype(tmp_top)> res; while(a.empty() == false) { res.push_back(a.top()); a.pop(); } return to_string(res); }
+	static std::string to_string(const std::priority_queue<T...> A) { auto a = A; if (a.empty()) return to_string (std::vector<int>(0)); auto tmp_top = a.top(); std::vector<decltype(tmp_top)> res; while(a.empty() == false) { res.push_back(a.top()); a.pop(); } return to_string(res); }
 
 	// check if container have contant iterator and begin and end - "https://stackoverflow.com/a/25216349/11587347"
 	template<typename...> struct void_ { using type = void; };
