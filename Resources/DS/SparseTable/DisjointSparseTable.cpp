@@ -43,14 +43,16 @@ public:
 
 template <typename T, typename F = function <T (const T&, const T&)>>
 class RangeQuery : public DisjointSparseTable <T, F> {
-	using U = DisjointSparseTable<T, F>;
+	using DisjointSparseTable<T, F>::dst;
+	using DisjointSparseTable<T, F>::k;
+	using DisjointSparseTable<T, F>::func;
 public:
-	RangeQuery (vector<T> a, const F& f) : U (a, f) {}
+	RangeQuery (vector<T> a, const F& f) : DisjointSparseTable<T, F> (a, f) {}
 	T get (const int& L, const int& R) {
-		if (L == R) { return U::dst.back()[L]; }
+		if (L == R) { return dst.back()[L]; }
 		assert (L < R);
-		const int height = U::k - (31 - __builtin_clz (L ^ R)) - 1;
-		return U::func (U::dst[height][L], U::dst[height][R]);
+		const int height = k - (31 - __builtin_clz (L ^ R)) - 1;
+		return func (dst[height][L], dst[height][R]);
 	}
 };
 

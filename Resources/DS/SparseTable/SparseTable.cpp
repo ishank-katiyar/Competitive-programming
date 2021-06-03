@@ -30,14 +30,16 @@ public:
 
 template <typename T, typename F = function <T (const T &, const T &)>>
 class RangeQuery : public SparseTable <T, F> {
-	using U = SparseTable<T, F>;
+	using SparseTable<T, F>::n;
+	using SparseTable<T, F>::st;
+	using SparseTable<T, F>::func;
 public:
 	RangeQuery () {}
-	RangeQuery (const vector<T>& a, const F& f) : U (a, f) {}
+	RangeQuery (const vector<T>& a, const F& f) : SparseTable<T, F> (a, f) {}
 	T get (const int l, const int r) {
-		assert (0 <= l && l <= r && r < U::n);
+		assert (0 <= l && l <= r && r < n);
 		int lg = 31 - __builtin_clz (r - l + 1);
-		return U::func (U::st[lg][l], U::st[lg][r - (1 << lg) + 1]);
+		return func (st[lg][l], st[lg][r - (1 << lg) + 1]);
 	}
 };
 
