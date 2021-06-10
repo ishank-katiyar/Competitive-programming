@@ -2,65 +2,6 @@
 
 using namespace std;
 
-string to_string(string s) {
-	return '"' + s + '"';
-}
-
-string to_string(const char* ch) {
-	return to_string((string)ch);
-}
-
-string to_string(char ch) {
-	return (string)"'" + ch + (string)"'";
-}
-
-string to_string(bool b) {
-	return (b ? "true" : "false");
-}
-
-template<class A, class B>
-string to_string(pair<A, B> p) {
-	return "(" + to_string(p.first) + ", " + to_string(p.second) + ")";
-}
-
-template<class A>
-string to_string(A a) {
-	string res = "{";
-	bool first = true;
-	for(const auto& x: a) {
-		if(first == false) res += ", ";
-		first = false;
-		res += to_string(x);
-	}
-	res += "}";
-	return res;
-}
-
-void debug() {cerr << "]\n";}
-
-template<class H, class... T>
-void debug(H head, T... tail) {
-	cerr << to_string(head) << " ";
-	debug(tail...);
-}
-
-#ifdef LOCAL
-	#define debug(...) cerr << "[" << #__VA_ARGS__ << " ] = ["; debug(__VA_ARGS__);
-#else 
-	#define debug(...) 
-#endif
-
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-
-int rnd() {
-	return uniform_int_distribution<int> (1, (int) 1e9) (rng);
-}
-
-template<class A> 
-A rnd(A x, A y) {
-	return uniform_int_distribution<A> (x, y) (rng);
-}
-
 namespace Euclid {
 /*
 * rule = gcd (a, b) = gcd (b, a ope b);
