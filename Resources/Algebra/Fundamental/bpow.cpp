@@ -4,9 +4,7 @@ using namespace std;
 
 template<class X, class Y, class Z = int64_t> X bpow (X a , Y b, int mod = -1) {
 	X res = static_cast<X> (1);
-	if (mod != -1 && (a < -mod || a >= mod)) { 
-    a %= mod; 
-  }
+	if (mod != -1 && (a < -mod || a >= mod)) a %= mod; 
 	while(b) {
 		if(b % 2 == 1) {
 			if (mod != -1) {
@@ -30,8 +28,7 @@ template<class X, class Y, class Z = int64_t> X bpow (X a , Y b, int mod = -1) {
 }
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+	std::cin.tie(0)->sync_with_stdio(0);
 	
 	return 0;
 }

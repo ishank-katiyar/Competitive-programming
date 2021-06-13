@@ -2,28 +2,25 @@
 
 using namespace std;
 
-template<class X, class Y, class Z = int64_t> X bpow (X a , Y b, int mod = -1) {
+template<class X, class Y, class Z = int64_t, typename std::enable_if<std::is_integral<Y>::value>::type* = nullptr> 
+X bpow (X a , Y b, int mod = -1) {
 	X res = static_cast<X> (1);
-	if (mod != -1 && (a < -mod || a >= mod)) { 
-		a %= mod; 
-	}
+	if (mod != -1 && (a < -mod || a >= mod)) a %= mod;
 	while(b) {
 		if(b % 2 == 1) {
 			if (mod != -1) {
-				// (res *= a) %= mod;
 				Z tmp = static_cast<Z> (1) * res * a;
 				if (tmp < -mod || tmp >= mod) tmp %= mod;
 				res = static_cast<X> (tmp);
 			}
-			else res *= a;
+			else res = res * a;
 		}
 		if (mod != -1) {
-			// (a *= a) %= mod;
 			Z tmp = static_cast<Z> (1) * a * a;
 			if (tmp < -mod || tmp >= mod) tmp %= mod;
 			a = static_cast<X> (tmp);
 		}
-		else a *= a;
+		else a = a * a;
 		b /= 2;
 	}
 	return res;
@@ -31,7 +28,7 @@ template<class X, class Y, class Z = int64_t> X bpow (X a , Y b, int mod = -1) {
 
 template<typename X> class mod {
 public:
-	using T = typename decay<decltype(X::value)>::type;
+	using T = typename std::decay<decltype(X::value)>::type;
 
 	template<typename U>
 	T normalize(const U& x) {
@@ -48,11 +45,11 @@ public:
 
 	const T& operator ()() const { return value; }
 	template<typename U> mod<U> inverse (const mod<U>& x) { 
-		return mod<U> (bpow <typename decay<decltype(U::value)>::type, typename decay<decltype(U::value)>::type> (x.value, U::value - 2, U::value)); 
+		return mod<U> (bpow <typename std::decay<decltype(U::value)>::type, typename std::decay<decltype(U::value)>::type> (x.value, U::value - 2, U::value)); 
 	}
 
-	template <typename U> friend ostream& operator << (ostream& out, const mod<U>& x) { out << x.value; return out; }
-	template <typename U> friend istream& operator >> (istream& in, mod<U>& x) { typename decay<decltype(U::value)>::type tmp; in >> tmp; x = mod<U> (tmp); return in; }
+	template <typename U> friend std::ostream& operator << (std::ostream& out, const mod<U>& x) { out << x.value; return out; }
+	template <typename U> friend std::istream& operator >> (std::istream& in, mod<U>& x) { typename std::decay<decltype(U::value)>::type tmp; in >> tmp; x = mod<U> (tmp); return in; }
 	mod& operator += (const mod& x) { if ((value += x.value) >= MOD()) value -= MOD(); return *this; }
 	mod& operator -= (const mod& x) { if ((value -= x.value) < 0) value += MOD(); return *this; }
 	mod& operator *= (const mod& x) { value = normalize (static_cast <int64_t> (value) * static_cast <int64_t> (x.value)); return *this; }
@@ -86,9 +83,10 @@ public:
 	template <typename U> friend mod<U> operator / (const mod<U>& a, const mod<U>& b) { return mod(a) /= b; }
 	template <typename U, typename V> friend mod<U> operator / (V a, const mod<U>& b) { return mod(a) /= b; }
 	template <typename U, typename V> friend mod<U> operator / (const mod<U>& a, V b) { return mod(a) /= b; }
-	template <typename U> friend string to_string (const mod<U>& x) { return to_string(x.value); }
+	template <typename U> friend std::string to_string (const mod<U>& x) { return to_string(x.value); }
+	std::string to_string () const { return std::to_string(value); }
 	template <typename U, typename V> friend mod<U> bpow (mod<U> a, V b) {
-		return mod<U> (bpow <typename decay<decltype(U::value)>::type, V> (a.value, b, U::value));
+		return mod<U> (bpow <typename std::decay<decltype(U::value)>::type, V> (a.value, b, U::value));
 	}
 private:
 	T value;
@@ -100,10 +98,10 @@ private:
 // ModType& md = VarMod::value;
 // using Mod = mod <VarMod>;
 
-constexpr int md = 998244353;
-using Mod = mod <std::integral_constant<typename decay<decltype(md)>::type, md>>;
+constexpr int md = 1e9 + 7;
+using Mod = mod <std::integral_constant<typename std::decay<decltype(md)>::type, md>>;
 
-vector<Mod> fact(2, 1), inv_fact(2, 1), inv(2, 1);
+std::vector<Mod> fact(2, 1), inv_fact(2, 1), inv(2, 1);
 
 Mod nCr (int n, int r) {
 	if (r > n) return 0;
@@ -117,8 +115,7 @@ Mod nCr (int n, int r) {
 }
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
+	std::cin.tie(0)->sync_with_stdio(0);
 	
 	return 0;
 }

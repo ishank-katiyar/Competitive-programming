@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -45,22 +47,6 @@ public:
 
 	template<typename T, typename std::enable_if<has_const_iterator<T>::value && has_begin_end<T>::value>::type* = nullptr>
 	static std::string to_string(const T a) { std::string res = "{"; bool first = true; for(const auto& x: a) { if(first == false) res += ", "; first = false, res += to_string(x); } res += "}"; return res; }
-
-	// SFINAE test to check if if class have to_string method - "https://stackoverflow.com/a/257382/11587347"
-	template <typename T> 
-	class have_to_string {
-		typedef char one;
-		struct two { char x[2]; };
-		template <typename C> static one test( decltype(&C::to_string) ) ;
-		template <typename C> static two test(...);    
-	public:
-		constexpr static bool value = sizeof(test<T>(0)) == sizeof(char);
-	};
-
-	template<typename T, typename std::enable_if<have_to_string<T>::value>::type* = nullptr>
-	static std::string to_string (const T x) {
-		return x.to_string ();
-	}
 };
 
 void debug() { std::cerr << "]" << std::endl; }
@@ -72,8 +58,64 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 	#define debug(...)
 #endif
 
+
+namespace std {
+
+template<class Fun>
+class y_combinator_result {
+	Fun fun_;
+public:
+	template<class T> explicit y_combinator_result(T &&fun): fun_(std::forward<T>(fun)) {}
+	template<class ...Args> decltype(auto) operator()(Args &&...args) { return fun_(std::ref(*this), std::forward<Args>(args)...); }
+};
+
+template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator_result<std::decay_t<Fun>>(std::forward<Fun>(fun)); }
+
+} // namespace std
+
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	struct node {
+		int depth = -1;
+		int par = -1;
+		vector<int> adj;
+	};
+	int N, k;
+	cin >> N >> k;
+	vector<node> gr (N);
+	for (int i = 1; i < N; i++) {
+		int x, y;
+		cin >> x >> y;
+		x--, y--;
+		gr[x].adj.push_back(y);
+		gr[y].adj.push_back(x);
+	}
+	vector<vector<int64_t>> dp (N, vector<int64_t> (k + 1));
+	for (int i = 0; i < N; i++) dp[i][0] = 1;
+	int64_t ans = 0;
+	y_combinator ([&] (auto self, int n, int p) -> void {
+		gr[n].depth = (n == 0 ? 0 : gr[p].depth + 1);
+		for (auto& i: gr[n].adj) {
+			if (i != p) {
+				self (i, n);
+			}
+		}
+		for (int i = 1; i <= k; i++) {
+			for (auto& u: gr[n].adj) {
+				if (u != p) {
+					dp[n][i] += dp[u][i - 1];
+				}
+			}
+		}
+		int64_t cur_ans = 0;
+		for (auto& u: gr[n].adj) {
+			if (u == p) continue;
+			for (int i = 1; i < k; i++) {
+				cur_ans += (dp[u][i - 1]) * (dp[n][k - i] - dp[u][k - i - 1]);
+			}
+		}
+		ans += (cur_ans / 2) + dp[n][k];
+	}) (0, -1);
+	cout << ans << '\n';
 	return 0;
 }
