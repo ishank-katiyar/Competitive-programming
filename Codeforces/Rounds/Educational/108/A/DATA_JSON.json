@@ -1,0 +1,31 @@
+{
+    "name": "A. Red and Blue Beans",
+    "group": "Codeforces - Educational Codeforces Round 108 (Rated for Div. 2)",
+    "url": "https://codeforces.com/contest/1519/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4\n1 1 0\n2 7 3\n6 1 4\n5 4 0\n",
+            "output": "YES\nYES\nNO\nNO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ARedAndBlueBeans"
+        }
+    },
+    "batch": {
+        "id": "fc26b306-20b8-48ab-ab64-579ace3ed8a0",
+        "size": 1
+    }
+}

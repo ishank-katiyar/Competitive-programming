@@ -1,0 +1,31 @@
+{
+    "name": "Alien Generator",
+    "group": "Google Coding Competitions - Round C 2021 - Kick Start 2021",
+    "url": "https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435c44/00000000007ec1cb",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 30000,
+    "tests": [
+        {
+            "input": "2\n10\n125\n",
+            "output": "Case #1: 2\nCase #2: 4\n"
+        }
+    ],
+    "testType": "multiNumber",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Solution",
+            "taskClass": "AlienGenerator"
+        }
+    },
+    "batch": {
+        "id": "99a6ca63-614f-4602-9932-ee5de68ce8ec",
+        "size": 1
+    }
+}

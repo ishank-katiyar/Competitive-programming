@@ -1,0 +1,31 @@
+{
+    "name": "College Life 5",
+    "group": "CodeChef - March CodeChef Starters 2021 Division 1 (Unrated)",
+    "url": "https://www.codechef.com/START2A/problems/COLGLF5",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 500,
+    "tests": [
+        {
+            "input": "3\n2 2\n1 3\n2 4\n3 1\n100 200 300\n1\n1 2\n1\n100 200\n",
+            "output": "3\n2\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CollegeLife5"
+        }
+    },
+    "batch": {
+        "id": "81ed611b-7ff3-4510-adb1-dcdb0dc6f26d",
+        "size": 1
+    }
+}

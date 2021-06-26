@@ -1,0 +1,31 @@
+{
+    "name": "B. Partial Replacement",
+    "group": "Codeforces - Codeforces Round #710 (Div. 3)",
+    "url": "https://codeforces.com/contest/1506/problem/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "5\n7 3\n.**.***\n5 1\n..*..\n5 2\n*.*.*\n3 2\n*.*\n1 1\n*\n",
+            "output": "3\n1\n3\n2\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BPartialReplacement"
+        }
+    },
+    "batch": {
+        "id": "ced8bf2d-f584-48a1-9cf9-3b0fd307dc15",
+        "size": 1
+    }
+}

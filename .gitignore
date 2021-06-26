@@ -1,0 +1,40 @@
+# basic
+# .gitignore
+Projects
+# Useless
+# .ccls-cache
+# .vscode
+
+# # main files
+# DATA_JSON.json
+# runsample.py
+# runsample.sh
+# Codechef/HBTU-contest
+# Codeforces/Group
+# Makefile
+# TODO
+# CPPLINT.cfg
+# Others/ICPC_Practice_Round
+# Resources/test
+
+# # random input output executable files && bash scripts
+# IN*
+# in*
+# *.txt
+# s.sh
+# ss.sh
+# out*
+# OUT*
+# solve
+# brute
+# gen*
+# solve1
+# brute1
+# brute2
+# solve_ntt
+# Codeforces/Rounds/Educational/40/I/solve_fft_2
+# Codeforces/Rounds/Educational/40/I/solve_ntt_fast
+# !Codechef/Lunchtime/2021/May/NUMCOMP1
+# stress_test.sh
+# checker*
+# Codeforces/Rounds/Random/VK/2012/Round_1/D/solve2

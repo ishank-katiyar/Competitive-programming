@@ -1,0 +1,35 @@
+{
+    "name": "C. Dessert Caf\u00e9",
+    "group": "Codeforces - 2020-2021 ACM-ICPC, Asia Seoul Regional Contest",
+    "url": "https://codeforces.com/gym/102920/problem/C",
+    "interactive": false,
+    "memoryLimit": 512,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "9 3\n1 2 8\n2 4 7\n4 3 6\n4 6 4\n5 6 3\n6 7 2\n6 9 5\n9 8 6\n2 5 8\n",
+            "output": "6\n"
+        },
+        {
+            "input": "4 4\n1 2 1\n1 3 1\n1 4 1\n2 4 1 3\n",
+            "output": "4\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CDessertCaf"
+        }
+    },
+    "batch": {
+        "id": "73085fc4-4be8-43b4-954a-09fdbce162a3",
+        "size": 1
+    }
+}

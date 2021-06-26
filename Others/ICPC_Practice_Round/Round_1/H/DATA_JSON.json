@@ -1,0 +1,35 @@
+{
+    "name": "H. Hot Springs",
+    "group": "Codeforces - 2020-2021 ICPC Northwestern European Regional Programming Contest (NWERC 2020)",
+    "url": "https://codeforces.com/gym/103049/problem/H",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "3\n1 3 4\n",
+            "output": "3 1 4\n"
+        },
+        {
+            "input": "6\n0 0 1 -1 -6 3\n",
+            "output": "0 0 -1 1 -6 3\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "HHotSprings"
+        }
+    },
+    "batch": {
+        "id": "54f102c2-ff6c-4f8b-b402-24757af2488f",
+        "size": 1
+    }
+}

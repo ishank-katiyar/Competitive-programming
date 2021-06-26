@@ -1,0 +1,27 @@
+{
+    "name": "The minimum cost",
+    "group": "HackerEarth - December Circuits '20",
+    "url": "https://www.hackerearth.com/challenges/competitive/december-circuits-20/algorithm/min-cost-2-fe2d3308/",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n2 1 1\n1 1\n2 1 1\n0 1\n",
+            "output": "1\n0\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "TheMinimumCost"
+        }
+    }
+}

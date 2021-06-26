@@ -1,0 +1,31 @@
+{
+    "name": "L. Let's Play Curling",
+    "group": "Codeforces - 2020-2021 ACM-ICPC, Asia Nanjing Regional Contest (XXI Open Cup, Grand Prix of Nanjing)",
+    "url": "https://codeforces.com/gym/102992/problem/L",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n2 2\n2 3\n1 4\n6 5\n2 5 3 7 1 7\n3 4 3 1 10\n1 1\n7\n7\n",
+            "output": "2\n3\nImpossible\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "LLetsPlayCurling"
+        }
+    },
+    "batch": {
+        "id": "4a46a90e-a775-4647-a5e9-4603713e0dfa",
+        "size": 1
+    }
+}

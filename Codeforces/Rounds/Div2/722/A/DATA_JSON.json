@@ -1,0 +1,31 @@
+{
+    "name": "A. Eshag Loves Big Arrays",
+    "group": "Codeforces - Codeforces Round #722 (Div. 2)",
+    "url": "https://codeforces.com/contest/1529/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n6\n1 1 1 2 2 3\n6\n9 9 9 9 9 9\n6\n6 4 1 1 4 1\n",
+            "output": "3\n0\n3\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "AEshagLovesBigArrays"
+        }
+    },
+    "batch": {
+        "id": "1ab63625-231f-48b3-825d-2f5cba47cad1",
+        "size": 1
+    }
+}

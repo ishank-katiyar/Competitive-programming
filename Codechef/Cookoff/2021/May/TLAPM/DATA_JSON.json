@@ -1,0 +1,31 @@
+{
+    "name": "The Last Problem",
+    "group": "CodeChef - May Cook-Off 2021 Division 2",
+    "url": "https://www.codechef.com/COOK129B/problems/TLAPM",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 500,
+    "tests": [
+        {
+            "input": "1\n1 1 3 3\n",
+            "output": "32\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "TheLastProblem"
+        }
+    },
+    "batch": {
+        "id": "6e33a098-f6f3-428f-83a5-7dfbd4766a9c",
+        "size": 1
+    }
+}

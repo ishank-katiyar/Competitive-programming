@@ -1,0 +1,31 @@
+{
+    "name": "Nobel Prize",
+    "group": "CodeChef - March CodeChef Starters 2021 Division 1 (Unrated)",
+    "url": "https://www.codechef.com/START2A/problems/NOBEL",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 500,
+    "tests": [
+        {
+            "input": "3\n4 4\n1 2 3 4\n5 4\n4 2 1 1 1\n4 4\n4 4 4 4\n",
+            "output": "No\nYes\nYes\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "NobelPrize"
+        }
+    },
+    "batch": {
+        "id": "11b23831-2047-4001-a26c-b63a281078b1",
+        "size": 1
+    }
+}

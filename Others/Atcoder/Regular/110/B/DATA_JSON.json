@@ -1,0 +1,31 @@
+{
+    "name": "B - Many 110",
+    "group": "AtCoder - AtCoder Regular Contest 110（Sponsored by KAJIMA CORPORATION）",
+    "url": "https://atcoder.jp/contests/arc110/tasks/arc110_b",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "4\n1011\n",
+            "output": "9999999999\n"
+        },
+        {
+            "input": "22\n1011011011011011011011\n",
+            "output": "9999999993\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BMany110"
+        }
+    }
+}

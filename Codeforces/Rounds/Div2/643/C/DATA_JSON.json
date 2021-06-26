@@ -1,0 +1,39 @@
+{
+    "name": "C. Count Triangles",
+    "group": "Codeforces - Codeforces Round #643 (Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/1355/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "1 2 3 4\n",
+            "output": "4\n"
+        },
+        {
+            "input": "1 2 2 5\n",
+            "output": "3\n"
+        },
+        {
+            "input": "500000 500000 500000 500000\n",
+            "output": "1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CCountTriangles"
+        }
+    },
+    "batch": {
+        "id": "ade2ad46-ba9a-447d-9eea-3f4b5f6c7c7e",
+        "size": 1
+    }
+}

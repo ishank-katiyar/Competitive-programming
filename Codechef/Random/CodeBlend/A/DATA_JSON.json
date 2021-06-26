@@ -1,0 +1,27 @@
+{
+    "name": "Bear and Big Bear",
+    "group": "CodeChef - CodeBlend",
+    "url": "https://www.codechef.com/BLND2020/problems/CODSTAN8",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4  7\n4  9      \n",
+            "output": "2\n3       \n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BearAndBigBear"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "A. Arithmetic Array",
+    "group": "Codeforces - Codeforces Round #726 (Div. 2)",
+    "url": "https://codeforces.com/contest/1537/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4\n3\n1 1 1\n2\n1 2\n4\n8 4 6 2\n1\n-2\n",
+            "output": "0\n1\n16\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "AArithmeticArray"
+        }
+    },
+    "batch": {
+        "id": "10e29efe-0f8a-44f3-bf3c-c3b85c3c4b7c",
+        "size": 1
+    }
+}

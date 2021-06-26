@@ -1,0 +1,3 @@
+Comparing files output.txt and OUTPUT_BRUTE.TXT
+FC: no differences encountered
+

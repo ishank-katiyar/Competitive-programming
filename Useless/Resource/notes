@@ -1,0 +1,4 @@
+first true :- high = mid, low = mid + 1;
+last true :- high = mid, low = mid + 1, check if f(low) if correct else low--; 
+
+Xor rule :- given seqeuence of 0s, 1s, XOR = (count of 1) % 2

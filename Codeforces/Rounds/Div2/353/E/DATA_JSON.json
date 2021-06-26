@@ -1,0 +1,35 @@
+{
+    "name": "E. Trains and Statistic",
+    "group": "Codeforces - Codeforces Round #353 (Div. 2)",
+    "url": "https://codeforces.com/contest/675/problem/E",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "4\n4 4 4\n",
+            "output": "6\n"
+        },
+        {
+            "input": "5\n2 3 5 5\n",
+            "output": "17\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ETrainsAndStatistic"
+        }
+    },
+    "batch": {
+        "id": "90bebecc-5478-4d75-b021-10f564a309e3",
+        "size": 1
+    }
+}

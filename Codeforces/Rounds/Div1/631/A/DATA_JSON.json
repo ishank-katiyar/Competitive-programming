@@ -1,0 +1,35 @@
+{
+    "name": "A. Dreamoon Likes Coloring",
+    "group": "Codeforces - Codeforces Round #631 (Div. 1) - Thanks, Denis aramis Shitov!",
+    "url": "https://codeforces.com/problemset/problem/1329/A",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "5 3\n3 2 2\n",
+            "output": "2 4 1\n"
+        },
+        {
+            "input": "10 1\n1\n",
+            "output": "-1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ADreamoonLikesColoring"
+        }
+    },
+    "batch": {
+        "id": "a6e3f6a2-2dc0-436e-b087-59c668d4197f",
+        "size": 1
+    }
+}

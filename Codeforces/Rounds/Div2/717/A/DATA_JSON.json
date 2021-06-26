@@ -1,0 +1,31 @@
+{
+    "name": "A. Tit for Tat",
+    "group": "Codeforces - Codeforces Round #717 (Div. 2)",
+    "url": "https://codeforces.com/contest/1516/problem/A",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n3 1\n3 1 4\n2 10\n1 0\n",
+            "output": "2 1 5\n0 1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ATitForTat"
+        }
+    },
+    "batch": {
+        "id": "de82de90-d732-43ad-a7dc-62924a924a37",
+        "size": 1
+    }
+}

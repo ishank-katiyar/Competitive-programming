@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    align-content: center;
+}
+
+.video {
+    height: 100%;
+    margin: auto;
+    display: block;
+    margin-top: auto;
+}
+
+.button {
+    background-image: url(~/Documents/CP/Extra/video_player/play.png);
+    height: 200px;
+    width: 200px;
+}

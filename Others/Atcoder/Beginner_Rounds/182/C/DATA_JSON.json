@@ -1,0 +1,39 @@
+{
+    "name": "C - To 3",
+    "group": "AtCoder - AtCoder Beginner Contest 182",
+    "url": "https://atcoder.jp/contests/abc182/tasks/abc182_c",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "35\n",
+            "output": "1\n"
+        },
+        {
+            "input": "369\n",
+            "output": "0\n"
+        },
+        {
+            "input": "6227384\n",
+            "output": "1\n"
+        },
+        {
+            "input": "11\n",
+            "output": "-1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CTo3"
+        }
+    }
+}

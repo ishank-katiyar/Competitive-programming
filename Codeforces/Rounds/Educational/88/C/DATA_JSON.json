@@ -1,0 +1,27 @@
+{
+    "name": "C. Mixing Water",
+    "group": "Codeforces - Educational Codeforces Round 88 (Rated for Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/1359/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "3\n30 10 20\n41 15 30\n18 13 18\n",
+            "output": "2\n7\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CMixingWater"
+        }
+    }
+}

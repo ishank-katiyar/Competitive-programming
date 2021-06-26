@@ -1,0 +1,31 @@
+{
+    "name": "Bench Press",
+    "group": "CodeChef - April Lunchtime 2021 Division 2",
+    "url": "https://www.codechef.com/LTIME95B/problems/BENCHP",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n2 5 10\n2 2\n7 100 50\n100 10 10 10 10 10 90\n6 100 40\n10 10 10 10 10 10\n",
+            "output": "YES\nNO\nYES\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BenchPress"
+        }
+    },
+    "batch": {
+        "id": "c696eebd-a0a6-4557-8fbe-26c006dd53a3",
+        "size": 1
+    }
+}

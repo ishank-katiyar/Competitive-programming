@@ -1,0 +1,31 @@
+{
+    "name": "B. Stoned Game",
+    "group": "Codeforces - Codeforces Round #666 (Div. 1)",
+    "url": "https://codeforces.com/problemset/problem/1396/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n1\n2\n2\n1 1\n",
+            "output": "T\nHL\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BStonedGame"
+        }
+    },
+    "batch": {
+        "id": "4c6d9140-8252-4a46-aa97-198b24e9baab",
+        "size": 1
+    }
+}

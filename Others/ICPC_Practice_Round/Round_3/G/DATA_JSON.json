@@ -1,0 +1,35 @@
+{
+    "name": "G. Goombas Colliding",
+    "group": "Codeforces - 2020-2021 ICPC - Gran Premio de Mexico - Repechaje",
+    "url": "https://codeforces.com/gym/102966/problem/G",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 500,
+    "tests": [
+        {
+            "input": "3 2\n1 1\n2 0\n",
+            "output": "2\n"
+        },
+        {
+            "input": "5 2\n1 0\n2 1\n",
+            "output": "3\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "GGoombasColliding"
+        }
+    },
+    "batch": {
+        "id": "8eb0a926-ae7c-4038-8b9b-37035ebaf004",
+        "size": 1
+    }
+}

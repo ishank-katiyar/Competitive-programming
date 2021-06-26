@@ -1,0 +1,5 @@
+Possible pragma's
+#pragma GCC target ("sse4.2") for __builtin_popcount link :- "https://codeforces.com/blog/entry/59268?#comment-428632"
+#pragma GCC optimize("-Ofast")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,avx2,fma")
+#pragma GCC optimize("unroll-loops")

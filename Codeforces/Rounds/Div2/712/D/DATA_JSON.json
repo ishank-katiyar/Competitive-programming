@@ -1,0 +1,31 @@
+{
+    "name": "D. 3-Coloring",
+    "group": "Codeforces - Codeforces Round #712 (Div. 2)",
+    "url": "https://codeforces.com/contest/1504/problem/D",
+    "interactive": true,
+    "memoryLimit": 256,
+    "timeLimit": 3000,
+    "tests": [
+        {
+            "input": "2\n1\n\n2\n\n1\n\n3\n",
+            "output": "2 1 1\n\n3 1 2\n\n3 2 1\n\n1 2 2\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "D3Coloring"
+        }
+    },
+    "batch": {
+        "id": "920e272c-2717-437e-bed7-07190ec55b46",
+        "size": 1
+    }
+}

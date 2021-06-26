@@ -1,0 +1,31 @@
+{
+    "name": "L. Lets Count Factors",
+    "group": "Codeforces - 2020-2021 ICPC - Gran Premio de Mexico - Repechaje",
+    "url": "https://codeforces.com/gym/102966/problem/L",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "5\n13 17\n120 980\n43 1\n60 1\n78 11\n",
+            "output": "2\n4\n1\n3\n4\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "LLetsCountFactors"
+        }
+    },
+    "batch": {
+        "id": "8b549059-10b1-4bd0-9942-affd09bc2af5",
+        "size": 1
+    }
+}

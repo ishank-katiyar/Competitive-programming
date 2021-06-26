@@ -1,0 +1,39 @@
+{
+    "name": "E. Product Oriented Recurrence",
+    "group": "Codeforces - Codeforces Round #566 (Div. 2)",
+    "url": "https://codeforces.com/contest/1182/problem/E",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "5 1 2 5 3\n",
+            "output": "72900\n"
+        },
+        {
+            "input": "17 97 41 37 11\n",
+            "output": "317451037\n"
+        },
+        {
+            "input": "1000000000000000000 1000000000 1000000000 1000000000 1000000000\n",
+            "output": "317451037\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "EProductOrientedRecurrence"
+        }
+    },
+    "batch": {
+        "id": "20044277-a38e-4715-b34b-a361e40811e6",
+        "size": 1
+    }
+}

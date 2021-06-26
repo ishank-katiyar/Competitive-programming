@@ -1,0 +1,31 @@
+{
+    "name": "A. And Then There Were K",
+    "group": "Codeforces - Codeforces Round #721 (Div. 2)",
+    "url": "https://codeforces.com/contest/1527/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n2\n5\n17\n",
+            "output": "1\n3\n15\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "AAndThenThereWereK"
+        }
+    },
+    "batch": {
+        "id": "79df4b51-e1d3-43df-8e22-19feca34eeb0",
+        "size": 1
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "name": "B - Almost GCD",
+    "group": "AtCoder - AtCoder Beginner Contest 182",
+    "url": "https://atcoder.jp/contests/abc182/tasks/abc182_b",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "3\n3 12 7\n",
+            "output": "3\n"
+        },
+        {
+            "input": "5\n8 9 18 90 72\n",
+            "output": "9\n"
+        },
+        {
+            "input": "5\n1000 1000 1000 1000 1000\n",
+            "output": "1000\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BAlmostGCD"
+        }
+    }
+}

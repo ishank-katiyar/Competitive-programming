@@ -1,0 +1,29 @@
+{
+    "name": "Problem 1. Social Distancing I",
+    "group": "USACO - USACO 2020 US Open Contest, Bronze",
+    "url": "http://www.usaco.org/index.php?page=viewproblem2&cpid=1035#",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 4000,
+    "tests": [
+        {
+            "input": "14\n10001001000010\n",
+            "output": "2\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "fileName": "socdist1.in",
+        "type": "file"
+    },
+    "output": {
+        "fileName": "socdist1.out",
+        "type": "file"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "Problem1SocialDistancingI"
+        }
+    }
+}

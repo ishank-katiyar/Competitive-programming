@@ -1,0 +1,35 @@
+{
+    "name": "K-Inversions",
+    "group": "Kattis",
+    "url": "https://open.kattis.com/problems/kinversions",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 5000,
+    "tests": [
+        {
+            "input": "BABA\n",
+            "output": "2\n0\n1\n"
+        },
+        {
+            "input": "BBBBBAAAAA\n",
+            "output": "1\n2\n3\n4\n5\n4\n3\n2\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "KInversions"
+        }
+    },
+    "batch": {
+        "id": "31313656-6ff4-4685-9890-e8f5d1857cb2",
+        "size": 1
+    }
+}

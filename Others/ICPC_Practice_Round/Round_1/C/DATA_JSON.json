@@ -1,0 +1,39 @@
+{
+    "name": "C. Contest Struggles",
+    "group": "Codeforces - 2020-2021 ICPC Northwestern European Regional Programming Contest (NWERC 2020)",
+    "url": "https://codeforces.com/gym/103049/problem/C",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2 1\n70 50\n",
+            "output": "90.0000000\n"
+        },
+        {
+            "input": "10 3\n80 90\n",
+            "output": "75.7142857\n"
+        },
+        {
+            "input": "2 1\n100 10\n",
+            "output": "impossible\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CContestStruggles"
+        }
+    },
+    "batch": {
+        "id": "a6cd8fb4-d6c0-4274-b884-2c94efdf10f8",
+        "size": 1
+    }
+}

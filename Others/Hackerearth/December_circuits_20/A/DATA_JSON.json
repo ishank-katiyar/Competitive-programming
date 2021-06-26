@@ -1,0 +1,27 @@
+{
+    "name": "Multiple occurrences",
+    "group": "HackerEarth - December Circuits '20",
+    "url": "https://www.hackerearth.com/challenges/competitive/december-circuits-20/algorithm/multiple-occurence-97c00160/",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "1\n5\n1 2 3 3 2\n",
+            "output": "4\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "MultipleOccurrences"
+        }
+    }
+}

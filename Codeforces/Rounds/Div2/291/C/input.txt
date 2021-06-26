@@ -1,0 +1,9 @@
+2 6
+aaaaa
+acacaca
+aabaa
+ccacacc
+caaac
+baaaa
+ccacaca 
+babaa

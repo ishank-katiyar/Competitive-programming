@@ -1,0 +1,35 @@
+{
+    "name": "K. Keyboardd",
+    "group": "Codeforces - 2020-2021 ICPC Northwestern European Regional Programming Contest (NWERC 2020)",
+    "url": "https://codeforces.com/gym/103049/problem/K",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "this is very annoying\nthiss iss veery annoying\n",
+            "output": "es\n"
+        },
+        {
+            "input": "so sticky\nssoo ssttiicckkyy\n",
+            "output": "cikosty\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "KKeyboardd"
+        }
+    },
+    "batch": {
+        "id": "595a45e7-fb47-49be-b6dc-3f4c0d4031c6",
+        "size": 1
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "I. Yet Another String Matching Problem",
+    "group": "Codeforces - Educational Codeforces Round 40 (Rated for Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/954/I",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 4000,
+    "tests": [
+        {
+            "input": "abcdefa\nddcb\n",
+            "output": "2 3 3 3\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "IYetAnotherStringMatchingProblem"
+        }
+    },
+    "batch": {
+        "id": "01048d52-419b-4e16-add7-86bf1d14fef9",
+        "size": 1
+    }
+}

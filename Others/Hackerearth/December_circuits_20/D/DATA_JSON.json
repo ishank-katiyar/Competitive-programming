@@ -1,0 +1,27 @@
+{
+    "name": "Number of ways",
+    "group": "HackerEarth - December Circuits '20",
+    "url": "https://www.hackerearth.com/challenges/competitive/december-circuits-20/algorithm/rook-path-142e55ee/",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "1\n3 3\n...\n.*.\n...\n",
+            "output": "8\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "NumberOfWays"
+        }
+    }
+}

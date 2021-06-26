@@ -1,0 +1,35 @@
+{
+    "name": "Possible Victory",
+    "group": "CodeChef - March CodeChef Starters 2021 Division 2 (Unrated)",
+    "url": "https://www.codechef.com/START2B/problems/T20MCH",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 500,
+    "tests": [
+        {
+            "input": "719 18 648\n",
+            "output": "YES\n"
+        },
+        {
+            "input": "720 18 648\n",
+            "output": "NO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "PossibleVictory"
+        }
+    },
+    "batch": {
+        "id": "e7ac2334-dc89-4e9a-bfdd-80184976fb0a",
+        "size": 1
+    }
+}

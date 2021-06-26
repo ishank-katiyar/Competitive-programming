@@ -1,0 +1,31 @@
+{
+    "name": "D. Playoff Tournament",
+    "group": "Codeforces - Educational Codeforces Round 110 (Rated for Div. 2)",
+    "url": "https://codeforces.com/contest/1535/problem/D",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "3\n0110?11\n6\n5 1\n6 ?\n7 ?\n1 ?\n5 ?\n1 1\n",
+            "output": "1\n2\n3\n3\n5\n4\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "DPlayoffTournament"
+        }
+    },
+    "batch": {
+        "id": "8102a3eb-67f1-4db6-ab22-dbafd2f58368",
+        "size": 1
+    }
+}

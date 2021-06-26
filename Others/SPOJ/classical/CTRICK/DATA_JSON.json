@@ -1,0 +1,31 @@
+{
+    "name": "Card Trick",
+    "group": "SPOJ - Classical",
+    "url": "https://www.spoj.com/problems/CTRICK/",
+    "interactive": false,
+    "memoryLimit": 1536,
+    "timeLimit": 3279,
+    "tests": [
+        {
+            "input": "2\n4\n5\n",
+            "output": "2 1 4 3\n3 1 4 5 2\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CardTrick"
+        }
+    },
+    "batch": {
+        "id": "56293e82-933a-4690-af50-78907dbf0419",
+        "size": 1
+    }
+}

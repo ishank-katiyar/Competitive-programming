@@ -1,0 +1,31 @@
+{
+    "name": "A. Perfectly Imperfect Array",
+    "group": "Codeforces - Codeforces Round #716 (Div. 2)",
+    "url": "https://codeforces.com/contest/1514/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n3\n1 5 4\n2\n100 10000\n",
+            "output": "YES\nNO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "APerfectlyImperfectArray"
+        }
+    },
+    "batch": {
+        "id": "5d90d83b-f1d2-4043-89c6-8ac3abbc1daa",
+        "size": 1
+    }
+}

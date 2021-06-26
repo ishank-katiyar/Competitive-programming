@@ -1,0 +1,35 @@
+{
+    "name": "C. Binary Search",
+    "group": "Codeforces - Codeforces Round #678 (Div. 2)",
+    "url": "https://codeforces.com/contest/1436/problem/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4 1 2\n",
+            "output": "6\n"
+        },
+        {
+            "input": "123 42 24\n",
+            "output": "824071958\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CBinarySearch"
+        }
+    },
+    "batch": {
+        "id": "7f0365eb-a23c-457c-92b3-e21616e4a87b",
+        "size": 1
+    }
+}

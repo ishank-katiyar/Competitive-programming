@@ -1,0 +1,39 @@
+{
+    "name": "D. Multiplication Table",
+    "group": "Codeforces - Codeforces Round #256 (Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/448/D",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2 2 2\n",
+            "output": "2\n"
+        },
+        {
+            "input": "2 3 4\n",
+            "output": "3\n"
+        },
+        {
+            "input": "1 10 5\n",
+            "output": "5\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "DMultiplicationTable"
+        }
+    },
+    "batch": {
+        "id": "c1f7082a-a35e-4492-8c30-24dded2c8142",
+        "size": 1
+    }
+}

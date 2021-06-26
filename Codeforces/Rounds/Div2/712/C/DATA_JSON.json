@@ -1,0 +1,31 @@
+{
+    "name": "C. Balance the Bits",
+    "group": "Codeforces - Codeforces Round #712 (Div. 2)",
+    "url": "https://codeforces.com/contest/1504/problem/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n6\n101101\n10\n1001101101\n4\n1100\n",
+            "output": "YES\n()()()\n((()))\nYES\n()()((()))\n(())()()()\nNO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CBalanceTheBits"
+        }
+    },
+    "batch": {
+        "id": "08eb3f63-6b8d-407d-b5fb-582bca489230",
+        "size": 1
+    }
+}

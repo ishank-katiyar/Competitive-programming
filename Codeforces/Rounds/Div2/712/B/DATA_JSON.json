@@ -1,0 +1,31 @@
+{
+    "name": "B. Flip the Bits",
+    "group": "Codeforces - Codeforces Round #712 (Div. 2)",
+    "url": "https://codeforces.com/contest/1504/problem/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "5\n10\n0111010000\n0100101100\n4\n0000\n0000\n3\n001\n000\n12\n010101010101\n100110011010\n6\n000111\n110100\n",
+            "output": "YES\nYES\nNO\nYES\nNO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BFlipTheBits"
+        }
+    },
+    "batch": {
+        "id": "f073042c-5ef7-427a-a62f-14c8f530c1cd",
+        "size": 1
+    }
+}

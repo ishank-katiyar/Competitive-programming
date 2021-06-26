@@ -1,0 +1,133 @@
+We have an array A consisting of integers of length n. We have constructed another array B of length n such that Bi=Ai ^ n where ‘^’ is XOR operation. This array B is known to you in input. Now you are given an integer k and your task is to calculate XOR of each element of array A with k. (Ai ^ k)
+authon: naitik varshney 2nd
+
+
+
+given reversed string with garbage values init, restore original string;
+author: rohit 3rd
+
+
+
+We have a list of N players  and we want to form a team. We have their batting skills stored in an array A and bowling strengths stored in another array B. We are also given a binary string X having Xi=1 if the given if the player has wicketkeeping skills as well. Now we want to form a team such that  sum of batting skills of all the players is at least x and sum of bowling skills of the team is at least y and has at least 1 wicketkeeper in the team. We want to know if it possible to form a team if yes print a suitable team else -1.
+input:
+n <= 15
+We can find all the subsets of size 11 and  and check if it fulfills all the conditions. Time complexity of this implementation must be O((2^N)*N).
+I can't really come up with some greedy solution to it.
+author: Ekansh verma 2nd
+
+
+
+You are given a matrix with 0s and 1s , cells containing 1 can form a path with other cells with 1s , if they are adjacent or diagonally connected.
+We hv to find the path with max no. Of 1s and output the no. Of 1s. The path need not to be just linear and can have branches.
+Actually I meant the max no. Of 1s connected to each other of all the 1s connected in the whole matrix.
+By using DFS and calculating tha max no. Of cells that are connected in the whole matrix
+1<=n,m<=300
+Time complexity would be O(n*m)
+author: arunima 2nd
+
+
+
+You are given a nxm grid which contains some integer values . A grid is called good if all the integeral values in cells of grid are non - negative.
+The negative elements are connected with each other if they share a common side. You can perform following operation :
+1) Increase any cell value by 1 which will also increase the whole connected chain by 1.
+You have to make the grid good .
+Print the minimum number of operations to make the grid good.
+
+1<=n,m<=1000;
+-1000000000<=grid values<=1000000000;
+We can solve this question using Grid DFS . In each DFS call we will find  the minimum element and add its absolute value in the answer .
+Expected Time Complexity: O(NxM)
+author: Yuvraj sharma 2nd
+
+
+
+There are n blocks arranged in a row starting with values Ai. There is a ball placed in block 1. The task is to move the ball to the nth block. You are also given an integer K. 
+Steps to move the ball :
+1.	You can move the ball in only forward direction.
+2.	If the ball is at index i then you can move the ball directly to any one of the index i+1, i+2, i+3………i+k.
+3.	The cost of moving the ball from index i to index j is abs(Ai-Aj).
+Your task is to move the ball to nth block in the minimum cost. Print the minimum cost.
+n<=1000 and 1<=k<=n.
+author: naitik varshney 2nd
+
+
+
+https://codeforces.com/problemset/problem/630/L
+
+
+
+There is a grid and people are standing at different points. One person is at point 0,0 he has some money m, he has to collect a minimum of 10^6 for a donation. We have to find minimum radius r he has to cover to collect the money.
+N=no. Of people other than the one at 0,0
+M= money he currently have
+Xi , Yi position of other people  k=money they have
+**The distance will be in points
+1<=N<=1000
+1<=M<10^6
+-10^4<=Xi,Yi<=10^4
+1<=k<10^6
+We just have to sort according to the distance, and find the min index at which money is atleast 10^6 and print the distance.
+Greedy, sorting
+O(nlogn) for sorting, O(n) to find the index
+author: arunima 2nd
+
+
+
+There are n workers in a factory who make hand made toys. The ith worker (1<=i<=n) makes a toy in ai seconds.
+You can decide their schedule .What is the minimum time needed to make m toys.
+1≤n≤200005, 1≤m≤10^9
+1≤ai≤10^9
+Input:
+3 8
+3 2 5
+output :
+9
+Explanation :  worker 1 makes three toy, worker 2 makes four toy and worker 3 makes one toy.
+Expected Time Complexity: O(N*log(10^18))
+Solution: I will apply Binary search on range 1 to 10^18 and check how many toys we can make in that time.We will select the suitable minimum time.
+Code :
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main() {
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    ll n=0,m=0,i=0,cnt=0,res=0;
+    cin>>n>>m;
+    vector<ll> v(n);
+    for(i=0;i<n;i++){
+        cin>>v[i];
+    }
+    ll l=0,r=LONG_LONG_MAX-5;
+    res=LONG_LONG_MAX;
+    while(l<=r){
+        ll mid=l+(r-l)/2;
+        cnt=0;
+        for(i=0;i<n;i++){
+            cnt+=mid/v[i];
+            if(cnt>m) break;
+        }
+        if(cnt>=m){
+            res=min(mid,res);
+            r=mid-1;
+        }
+        else{
+            l=mid+1;
+        }
+    }
+    cout<<res<<endl;   
+    return 0;
+} (
+author: Yuvraj sharma 2nd
+
+
+
+You are given an integer n. Your task is to find an array A of size n in which all elements should be unique and for any tuple 1<=i,j,k<=n
+Ai + Aj != Ak.
+3<=n<=100
+2:36
+Solution :
+We can modify fibonacci series such that
+first print 1 2
+then next element as sum of previous two +1
+2:36
+1 2 4 7 12 20 33 54 .......
+author: naithik varshney 2nd
