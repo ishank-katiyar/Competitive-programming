@@ -1,0 +1,31 @@
+{
+    "name": "XxOoRr",
+    "group": "CodeChef - July Challenge 2021 Division 1 (Unrated)",
+    "url": "https://www.codechef.com/JULY21A/problems/XXOORR",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "1\n3 2\n3 6 10\n",
+            "output": "5\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "XxOoRr"
+        }
+    },
+    "batch": {
+        "id": "a566409a-e11a-469c-8495-b8cb158c8661",
+        "size": 1
+    }
+}

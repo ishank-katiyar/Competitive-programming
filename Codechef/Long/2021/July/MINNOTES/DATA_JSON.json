@@ -1,0 +1,31 @@
+{
+    "name": "Optimal Denomination",
+    "group": "CodeChef - July Challenge 2021 Division 1 (Unrated)",
+    "url": "https://www.codechef.com/JULY21A/problems/MINNOTES",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3\n3\n1 2 3\n3\n8 4 2\n2\n2 2\n",
+            "output": "4\n4\n2\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "OptimalDenomination"
+        }
+    },
+    "batch": {
+        "id": "89166927-feab-4026-821c-ac109e1783b8",
+        "size": 1
+    }
+}

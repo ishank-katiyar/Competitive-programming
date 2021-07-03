@@ -1,0 +1,31 @@
+{
+    "name": "Chef vs Bharat",
+    "group": "CodeChef - July Challenge 2021 Division 1 (Unrated)",
+    "url": "https://www.codechef.com/JULY21A/problems/CHEFORA",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n1 2\n9 11\n",
+            "output": "1\n541416750\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ChefVsBharat"
+        }
+    },
+    "batch": {
+        "id": "6125abcb-aa07-4149-8032-2ed9624be37e",
+        "size": 1
+    }
+}
