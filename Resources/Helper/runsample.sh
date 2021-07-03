@@ -17,7 +17,7 @@ var=$(pwd)/runsample.py
 if [ ! -f "$var" ]; then
 	echo "file not exists"
 	pwd
-	cp ~/Documents/CP/Resources/Helper/runsample_main.py ./runsample.py
+	cp ~/Documents/Coding/CP/Resources/Helper/runsample_main.py ./runsample.py
 fi
 
 python3 runsample.py --f $1
