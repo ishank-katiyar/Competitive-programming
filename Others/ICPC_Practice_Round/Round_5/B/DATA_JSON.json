@@ -1,0 +1,35 @@
+{
+    "name": "Sort the Array",
+    "group": "CodeDrills - Amrita ICPC Practice Session #6",
+    "url": "https://codedrills.io/contests/amrita-icpc-practice-session-6/problems/sort-the-array",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n5\n4 2 3 1 5\n3\n1 2 3\n",
+            "output": "YES\nYES\n"
+        },
+        {
+            "input": "1\n5\n5 2 3 1 4\n",
+            "output": "NO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "SortTheArray"
+        }
+    },
+    "batch": {
+        "id": "d63bf3b9-702d-4f01-a2b7-ad68ec1086d4",
+        "size": 1
+    }
+}
