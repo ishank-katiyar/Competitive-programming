@@ -1,0 +1,26 @@
+{
+    "name": "Grid Queries",
+    "group": "CodeDrills - Amrita ICPC Practice Session #5",
+    "url": "https://codedrills.io/contests/amrita-icpc-practice-session-5/problems/grid-queries",
+    "interactive": false,
+    "memoryLimit": 512,
+    "timeLimit": 1000,
+    "tests": [],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "GridQueries"
+        }
+    },
+    "batch": {
+        "id": "be780e7a-ff93-48b4-8557-77a073eb1c40",
+        "size": 1
+    }
+}
