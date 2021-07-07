@@ -154,7 +154,10 @@ def RunSample(command):
     Data = json.load(open('DATA_JSON.json', 'r'))
 
     totalTests = len(Data['tests'])
-    print("total no of tests: " + str(totalTests))
+    if not totalTests:
+        sys.exit ("" + termcolor.colored ("total no of tests: 0", 'red', attrs=['bold']))
+    else:
+        print("total no of tests: " + str(totalTests))
 
     isDouble = False
     if CompareWithDiff and isDouble:
