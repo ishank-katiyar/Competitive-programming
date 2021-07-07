@@ -155,7 +155,7 @@ def RunSample(command):
 
     totalTests = len(Data['tests'])
     if not totalTests:
-        sys.exit ("" + termcolor.colored ("total no of tests: 0", 'red', attrs=['bold']))
+        sys.exit ("total no of tests: " + termcolor.colored ("0", 'red', attrs=['bold']))
     else:
         print("total no of tests: " + str(totalTests))
 
