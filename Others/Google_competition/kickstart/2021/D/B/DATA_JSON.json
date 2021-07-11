@@ -1,0 +1,31 @@
+{
+    "name": "Cutting Intervals",
+    "group": "Google Coding Competitions - Round D 2021 - Kick Start 2021",
+    "url": "https://codingcompetitions.withgoogle.com/kickstart/round/00000000004361e3/000000000082b933",
+    "interactive": false,
+    "memoryLimit": 1024,
+    "timeLimit": 20000,
+    "tests": [
+        {
+            "input": "1\n3 3\n1 3\n2 4\n1 4\n",
+            "output": "Case #1: 7\n"
+        }
+    ],
+    "testType": "multiNumber",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Solution",
+            "taskClass": "CuttingIntervals"
+        }
+    },
+    "batch": {
+        "id": "d163a54d-8a11-4efe-a5c0-f81df48899b7",
+        "size": 1
+    }
+}
