@@ -1,0 +1,31 @@
+{
+    "name": "A. Find The Array",
+    "group": "Codeforces - Educational Codeforces Round 111 (Rated for Div. 2)",
+    "url": "https://codeforces.com/contest/1550/problem/0",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4\n1\n8\n7\n42\n",
+            "output": "1\n3\n3\n7\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "AFindTheArray"
+        }
+    },
+    "batch": {
+        "id": "fc651f44-4dbf-42ef-92ad-6932ca27661b",
+        "size": 1
+    }
+}
