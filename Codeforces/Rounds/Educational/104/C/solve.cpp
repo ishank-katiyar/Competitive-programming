@@ -100,6 +100,30 @@ using namespace std;
 
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		if (n % 2 == 1) {
+			int x = (n - 1) / 2;
+			vector<int> a (n - 1, -1);
+			for (int i = 0; i < x; i++) a[i] = 1;
+			while (a.empty() == false) {
+				for (auto& i: a) cout << i << ' ';
+				a.pop_back();
+			}
+			cout << '\n';
+		}	else {
+			for (int i = 0; i < n; i++) {
+				for (int j = i + 1; j < n; j++) {
+					if (j - i == n / 2) cout << 0 << ' ';
+					if (j - i < n / 2) cout << 1 << ' ';
+					if (j - i > n / 2) cout << -1 << ' ';
+				}
+			}
+			cout << '\n';
+		}
+	}
 	return 0;
 }

@@ -1,9 +1,16 @@
 basic
 # .gitignore
+<<<<<<< HEAD
 Projects
 Useless
 .ccls-cache
 .vscode
+=======
+# Projects
+# Useless
+# .ccls-cache
+# .vscode
+>>>>>>> private
 
 # main files
 DATA_JSON.json

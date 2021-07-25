@@ -1,3 +1,5 @@
+#warning Incomplete
+
 #include <bits/stdc++.h>
 
 class ToString {
@@ -100,6 +102,53 @@ using namespace std;
 
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
+
+	auto solve = [&] () -> void {
+		int n;
+		cin >> n;
+
+		vector<int64_t> c (n);
+		for (int i = 0; i < n; i++) {
+			cin >> c[i];
+		}
+
+		set<int64_t> a, b;
+
+		a.insert (c.front());
+		b.insert (c[1]);
+
+		int64_t ans = *a.begin() * n + *b.begin() * n;
+
+		int64_t sum1 = c[0], sum2 = c[1];
+
+		for (int i = 2; i < n; i++) {
+			if (i % 2 == 0) {
+				a.insert (c[i]);
+				sum1 += c[i];
+			}	else {
+				b.insert (c[i]);
+				sum2 += c[i];
+			}
+
+			int sz1 = a.size();
+			int sz2 = b.size();
+
+			int64_t curans = 0;
+			curans += (*a.begin() * (n - sz1 + 1)) + (sum1 - *a.begin());
+			curans += (*b.begin() * (n - sz2 + 1)) + (sum2 - *b.begin());
+
+			ans = min (ans, curans);
+		}
+
+		cout << ans << '\n';
+	};
+
+	int TestCase = 1;
+	cin >> TestCase;
+
+	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
+		solve ();
+	}
 
 	return 0;
 }

@@ -100,6 +100,32 @@ using namespace std;
 
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int n;
+	cin >> n;
+	deque<int> a (n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	sort (a.begin(), a.end());
+	vector<int> b;
+	int i = 0, j = n / 2;
+	while (i < n / 2 || j < n) {
+		if (j < n) {
+			b.push_back (a[j]);
+			j += 1;
+		}
+		if (i < n / 2) {
+			b.push_back (a[i]);
+			i += 1;
+		}
+	}
+	int cnt = 0;
+	for (int i = 1; i < n - 1; i++) {
+		cnt += (b[i] < b[i - 1] && b[i] < b[i + 1]);
+	}
+	cout << cnt << '\n';
+	for (int i = 0; i < n; i++) {
+		cout << b[i] << " \n"[i == n - 1];
+	}
 	return 0;
 }

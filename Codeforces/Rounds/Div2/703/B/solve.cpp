@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -74,6 +72,15 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 	#define debug(...)
 #endif
 
+// Ordered_set
+#include <ext/pb_ds/assoc_container.hpp> // Common file
+using namespace __gnu_pbds;
+template<class X, class cmp = std::less<X>>
+using ordered_set = tree<X, null_type, cmp, rb_tree_tag, tree_order_statistics_node_update>;
+
+// Random number Generator
+std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+template<class A> A rnd(A x, A y) { return std::uniform_int_distribution<A> (x, y) (rng); }
 
 namespace std {
 
@@ -89,62 +96,30 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 } // namespace std
 
+using namespace std;
+
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 	int t;
 	cin >> t;
-	while (t--)  {
+	while (t--) {
 		int n;
 		cin >> n;
-		vector<pair<int, int>> a (n);
-		pair<int64_t, int64_t> av = {0, 0};
+		vector<int> x, y;
 		for (int i = 0; i < n; i++) {
-			cin >> a[i].first >> a[i].second;
-			av.first += a[i].first, av.second += a[i].second;
+			int a, b;
+			cin >> a >> b;
+			x.push_back (a);
+			y.push_back (b);
 		}
-		av.first /= n, av.second /= n;
-		auto sum = [&] (pair<int64_t, int64_t> A) -> int64_t {
-			int64_t ret = 0;
-			for (int i = 0; i < n; i++) {
-				ret += abs (A.first - a[i].first) + abs (A.second - a[i].second);
-			}
-			return ret;
+		auto f = [] (const vector<int> &a) -> int64_t {
+			int sz = a.size();
+			if (sz % 2) return 1;
+			return a[sz / 2] - a[(sz / 2) - 1] + 1;
 		};
-		debug (av)
-		vector<int> dx = {-1, 1, 0, 0, 0};
-		vector<int> dy = {0, 0, -1, 1, 0};
-		vector<pair<int64_t, pair<int64_t, int64_t>>> aa (5);
-		for (int i = 0; i < 5; i++) {
-			aa[i] = make_pair(sum(make_pair(av.first + dx[i], av.second + dy[i])), make_pair(av.first + dx[i], av.second + dy[i]));
-		}
-		sort (aa.begin(), aa.end());
-		debug (aa)
-		av = aa.front().second;
-		auto Min = aa.front().first;
-		queue<pair<int64_t, int64_t>> q;
-		q.push (av);
-		map<pair<int64_t, int64_t>, int> mp;
-		mp[av]++;
-		int ans = 0;
-		while (q.empty() == false) {
-			auto u = q.front();
-			q.pop();
-			debug (u, sum(u), Min)
-			assert (sum (u) >= Min);
-			if (sum (u) == Min) {
-				ans += 1;
-				pair<int64_t, int64_t> v;
-				v = make_pair(u.first + 1, u.second);
-				if (mp.count (v) == 0) q.push (v), mp[v]++;
-				v = make_pair(u.first - 1, u.second);
-				if (mp.count (v) == 0) q.push (v), mp[v]++;
-				v = make_pair(u.first, u.second + 1);
-				if (mp.count (v) == 0) q.push (v), mp[v]++;
-				v = make_pair(u.first, u.second - 1);
-				if (mp.count (v) == 0) q.push (v), mp[v]++;
-			}
-		}
-		cout << ans << '\n';
+		sort (x.begin(), x.end());
+		sort (y.begin(), y.end());
+		cout << f (vector<int> (x.begin(), x.end())) * f (vector<int> (y.begin(), y.end())) << '\n';
 	}
 	return 0;
 }

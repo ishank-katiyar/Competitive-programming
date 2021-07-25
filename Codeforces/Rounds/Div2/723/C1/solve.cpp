@@ -98,8 +98,33 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 using namespace std;
 
+struct cmp {
+	bool operator() (const int &a, const int &b) const { 
+		return a > b; 
+	}
+};
+
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int n;
+	cin >> n;
+	vector<int64_t> a (n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	priority_queue<int, vector<int>, cmp> pq;
+	int64_t sum = 0;
+	int cnt = 0;
+	for (int i = 0; i < n; i++) {
+		sum += a[i];
+		pq.push (a[i]);
+		if (sum < 0) {
+			sum -= pq.top();
+			pq.pop();
+		}	else {
+			cnt += 1;
+		}
+	}
+	cout << cnt << '\n';
 	return 0;
 }

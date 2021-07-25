@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+using namespace std;
+
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -72,15 +74,6 @@ void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; d
 	#define debug(...)
 #endif
 
-// Ordered_set
-#include <ext/pb_ds/assoc_container.hpp> // Common file
-using namespace __gnu_pbds;
-template<class X, class cmp = std::less<X>>
-using ordered_set = tree<X, null_type, cmp, rb_tree_tag, tree_order_statistics_node_update>;
-
-// Random number Generator
-std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
-template<class A> A rnd(A x, A y) { return std::uniform_int_distribution<A> (x, y) (rng); }
 
 namespace std {
 
@@ -96,10 +89,30 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 } // namespace std
 
-using namespace std;
-
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int t;
+	cin >> t;
+	while (t--) {
+		string a, b;
+		cin >> a >> b;
+		int n = a.size();
+		int m = b.size();
+		bool ok = false;
+		for (int i = 0; i < n; i++) {
+			for (int j = i; j < n; j++) {
+				debug (i)
+				string s1 = a.substr (i, j - i + 1);
+				debug (m - (j - i + 1))
+				int restsz = (m - (j - i + 1));
+				if (j - restsz >= 0 && restsz >= 0) {
+					string s2 = a.substr(j - (m - (j - i + 1)), (m - (j - i + 1)));				
+					reverse (s2.begin(), s2.end());
+					ok |= (s1 + s2 == b);
+				}
+			}
+		}
+		cout << (ok ? "YES" : "NO") << '\n';
+	}
 	return 0;
 }
