@@ -101,5 +101,16 @@ using namespace std;
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
+	auto solve = [&] () -> void {
+		
+	};
+
+	int TestCase = 1;
+	cin >> TestCase;
+
+	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
+		solve ();
+	}
+
 	return 0;
 }
