@@ -100,6 +100,20 @@ using namespace std;
 
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int t;
+	cin >> t;
+	while (t--) {
+		string s;
+		cin >> s;
+		map<int, int> mp;
+		for (auto& i: s) mp[i] += 1;
+		int ans = 0;
+		int ss = 0;
+		for (auto& i: mp) {
+			if (i.second > 1) ans += 1;
+			else ss += 1;
+		}
+		cout << ans + ss / 2 << '\n';
+	}
 	return 0;
 }

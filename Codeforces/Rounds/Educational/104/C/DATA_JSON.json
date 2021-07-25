@@ -1,0 +1,31 @@
+{
+    "name": "C. Minimum Ties",
+    "group": "Codeforces - Educational Codeforces Round 104 (Rated for Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/1487/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n2\n3\n",
+            "output": "0\n1 -1 1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CMinimumTies"
+        }
+    },
+    "batch": {
+        "id": "35fe607e-dbe8-4c07-9b1d-6067c7fa7a2f",
+        "size": 1
+    }
+}

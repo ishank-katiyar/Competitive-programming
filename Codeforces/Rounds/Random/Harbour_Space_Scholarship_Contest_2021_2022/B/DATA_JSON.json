@@ -1,0 +1,31 @@
+{
+    "name": "B. Reverse String",
+    "group": "Codeforces - Harbour.Space Scholarship Contest 2021-2022 (open for everyone, rated, Div. 1 + Div. 2)",
+    "url": "https://codeforces.com/contest/1553/problem/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 3000,
+    "tests": [
+        {
+            "input": "6\nabcdef\ncdedcb\naaa\naaaaa\naab\nbaaa\nab\nb\nabcdef\nabcdef\nba\nbaa\n",
+            "output": "YES\nYES\nNO\nYES\nYES\nNO\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BReverseString"
+        }
+    },
+    "batch": {
+        "id": "bf93ed04-ae19-4ab5-ac89-326d9dc96476",
+        "size": 1
+    }
+}

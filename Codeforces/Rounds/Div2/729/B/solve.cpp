@@ -100,6 +100,22 @@ using namespace std;
 
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
-
+	int t;
+	cin >> t;
+	while (t--) {
+		int64_t a, b, n;
+		cin >> n >> a >> b;
+		if (a == 1) {
+			cout << ((n - 1) % b == 0 ? "Yes" : "No") << '\n';
+			continue;
+		}
+		int64_t x = 1;
+		bool ok = false;
+		while (x <= n) {
+			ok |= ((n - x) % b == 0);
+			x *= a;
+		}
+		cout << (ok ? "Yes" : "No") << '\n';
+	}
 	return 0;
 }

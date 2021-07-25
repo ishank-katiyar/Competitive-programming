@@ -1,0 +1,31 @@
+{
+    "name": "C. Penalty",
+    "group": "Codeforces - Harbour.Space Scholarship Contest 2021-2022 (open for everyone, rated, Div. 1 + Div. 2)",
+    "url": "https://codeforces.com/contest/1553/problem/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 3000,
+    "tests": [
+        {
+            "input": "4\n1?0???1001\n1111111111\n??????????\n0100000000\n",
+            "output": "7\n10\n6\n9\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CPenalty"
+        }
+    },
+    "batch": {
+        "id": "9fb123b5-4b45-4728-9ee2-c941b2fbe1c6",
+        "size": 1
+    }
+}
