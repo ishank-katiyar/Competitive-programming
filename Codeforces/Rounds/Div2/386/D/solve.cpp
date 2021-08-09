@@ -134,11 +134,51 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n, k, a, b;
+		in (n, k, a, b);
+		if (max (a - 1, b - 1) / k > min (a, b)) {
+			out ("NO");
+			return;
+		}
+		char ch1 = 'G', ch2 = 'B';
+		if (b > a) {
+			swap (a, b);
+			swap (ch1, ch2);
+		}
+		vector<int> A (n + 2);
+		for (int i = 1; i < n + 2; i += 2) {
+			int mn = min (a, k);
+			A[i] = mn;
+			a -= mn;
+		}
+		assert (a == 0);
+		debug (A)
+		for (int i = 2; i < n + 1; i += 2) {
+			if (A[i + 1] > 0) {
+				A[i] = 1;
+				b -= 1;
+			}
+		}
+		assert (b >= 0);
+		debug (A)
+		for (int i = 0; i < n + 2; i++) {
+			int x = min (k -  A[i], b);
+			A[i] += x;
+			b -= x;
+		}
+		debug (A)
+		assert (b == 0);
+		string ans = "";
+		for (int i = 0; i < n + 2; i++) {
+			while (A[i]--) {
+				ans += string (1, (i % 2 ? ch1 : ch2));
+			}
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

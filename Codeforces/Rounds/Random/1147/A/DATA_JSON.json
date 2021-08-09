@@ -1,0 +1,39 @@
+{
+    "name": "A. Hide and Seek",
+    "group": "Codeforces - Forethought Future Cup - Final Round (Onsite Finalists Only)",
+    "url": "https://codeforces.com/problemset/problem/1147/A",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "5 3\n5 1 4\n",
+            "output": "9\n"
+        },
+        {
+            "input": "4 8\n1 2 3 4 4 3 2 1\n",
+            "output": "0\n"
+        },
+        {
+            "input": "100000 1\n42\n",
+            "output": "299997\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "AHideAndSeek"
+        }
+    },
+    "batch": {
+        "id": "ba4dac4f-83d8-48af-a8cc-aae280707ca3",
+        "size": 1
+    }
+}

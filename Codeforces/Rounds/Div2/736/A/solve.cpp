@@ -134,7 +134,8 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int p = nxt();
+		out (2, p - 1);
 	};
 
 	int TestCase = 1;

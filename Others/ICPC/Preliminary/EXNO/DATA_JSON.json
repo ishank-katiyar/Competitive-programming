@@ -1,0 +1,31 @@
+{
+    "name": "Express the Number",
+    "group": "CodeDrills - ICPC Amritapuri 2020 Preliminary Round",
+    "url": "https://codedrills.io/contests/icpc-amritapuri-2020-preliminary-round/problems/express-the-number",
+    "interactive": false,
+    "memoryLimit": 2048,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "4\n3 2\n3 3\n9 1\n3 0\n",
+            "output": "2\n1\n2\n-1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ExpressTheNumber"
+        }
+    },
+    "batch": {
+        "id": "ee19fb64-d9bf-4699-a1f1-5d2ecceef014",
+        "size": 1
+    }
+}

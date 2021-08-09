@@ -1,0 +1,39 @@
+{
+    "name": "B. Light It Up",
+    "group": "Codeforces - Educational Codeforces Round 46 (Rated for Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/1000/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "3 10\n4 6 7\n",
+            "output": "8\n"
+        },
+        {
+            "input": "2 12\n1 10\n",
+            "output": "9\n"
+        },
+        {
+            "input": "2 7\n3 4\n",
+            "output": "6\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BLightItUp"
+        }
+    },
+    "batch": {
+        "id": "a9b03d48-5d04-49bd-81f6-8985d6805dfc",
+        "size": 1
+    }
+}

@@ -134,7 +134,16 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<int> a (n);
+		in (a);
+		map<int, int> mp;
+		for (auto& i: a) mp[i] += 1;
+		int ans = 0;
+		for (auto& i: mp) {
+			ans += min (i.second, i.first - 1);
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;

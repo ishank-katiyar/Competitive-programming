@@ -134,11 +134,37 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		n *= 2;
+		vector<int> A (n);
+		in (A);
+		debug (n, A)
+		auto f = [] (const vector<int> a) -> int {
+			assert (is_sorted(_(a)));
+			int mx = 0;
+			for (int i = 1; i < SZ(a); i += 2) {
+				// chmax (mx, a[i] - a[i - 1]);
+				mx += a[i] - a[i - 1];
+			}
+			return mx;
+		};
+		sort (_(A));
+		int ans = INT_MAX;
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				vector<int> aa;
+				for (int k = 0; k < n; k++) {
+					if (k == i || k == j) continue;
+					aa.pb (A[k]);
+				}
+				chmin (ans, f (aa));
+			}
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

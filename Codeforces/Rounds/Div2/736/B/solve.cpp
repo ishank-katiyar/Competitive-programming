@@ -134,7 +134,20 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n;
+		string a, b;
+		in (n, a, b);
+		vector<bool> used (n, false);
+		rep (i, 0, n) {
+			if (i > 0 && a[i] == '1' && b[i - 1] == '1' && used[i - 1] == false) {
+				used[i - 1] = true;
+			}	else if (a[i] == '0' && b[i] == '1' && used[i] == false) {
+				used[i] = true;
+			}	else if (i < n - 1 && a[i] == '1' && b[i + 1] == '1' && used[i + 1] == false) {
+				used[i + 1] = true;
+			}
+		}
+		out (count (_(used), true));
 	};
 
 	int TestCase = 1;

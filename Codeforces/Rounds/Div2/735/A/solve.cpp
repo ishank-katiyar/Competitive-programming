@@ -134,7 +134,14 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<ll> a (n);
+		in (a);
+		ll ans = 0;
+		rep (i, 1, n) {
+			chmax (ans, a[i] * a[i - 1]);
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;

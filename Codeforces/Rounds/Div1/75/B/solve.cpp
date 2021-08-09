@@ -78,8 +78,8 @@ template<class H, class... T> void debug(H head, T... tail) { std::cerr << ToStr
 #define pb push_back
 #define eb emplace_back
 #define mk make_pair
-#define _(x)  (x).begin(), (x).end()
-#define r_(x)  (x).rbegin(), (x).rend()
+#define all(x)  (x).begin(), (x).end()
+#define rall(x)  (x).rbegin(), (x).rend()
 #define SZ(a) int(a.size())
 using ll = int64_t;
 template<class T = int> T nxt () { T TemporaryVariable; std::cin >> TemporaryVariable; return TemporaryVariable; }
@@ -97,7 +97,7 @@ template<class A> std::istream& operator >> (std::istream &is, std::vector<A> &v
 
 // input-output
 void in () {}
-template<class A, class... B> void in (A &head, B&... tail) { std::cin >> head; in (tail...); }
+template<class A, class... B> void in (A &head, B... tail) { std::cin >> head; in (tail...); }
 void _out () { std::cout << '\n'; }
 template<class A, class... B> void _out (A head, B... tail) { std::cout << " " << head; _out (tail...); }
 template<class A, class... B> void out (A head, B... tail) { std::cout << head; _out (tail...); }
@@ -130,15 +130,72 @@ template<class Fun> decltype(auto) y_combinator(Fun &&fun) { return y_combinator
 
 using namespace std;
 
+
+template <typename T, typename F = function <T (const T &, const T &)>>
+class SparseTable {
+protected:
+	int n;
+	vector<vector<T>> st;
+	F func;
+public:
+	SparseTable () {}
+	SparseTable (const vector<T>& a, const F& f) : n (static_cast<int>(a.size())), func (f) {
+		assert (n > 0);
+		int k = 32 - __builtin_clz (n);
+		st.assign (k, vector<T> (n + 1));
+		build (a);
+	}
+
+	void build (const vector<T>& a) {
+		int k = 32 - __builtin_clz (n);
+		st[0] = a;
+		for (int j = 1; j < k; j++) {
+			for (int i = 0; i + (1 << j) <= n; i++) {
+				st[j][i] = func (st[j - 1][i], st[j - 1][i + (1 << (j - 1))]);
+			}
+		}
+	}
+};
+
+template <typename T, typename F = function <T (const T &, const T &)>>
+class RangeQuery : public SparseTable <T, F> {
+	using SparseTable<T, F>::n;
+	using SparseTable<T, F>::st;
+	using SparseTable<T, F>::func;
+public:
+	RangeQuery () {}
+	RangeQuery (const vector<T>& a, const F& f) : SparseTable<T, F> (a, f) {}
+	T get (const int l, const int r) {
+		assert (0 <= l && l <= r && r < n);
+		int lg = 31 - __builtin_clz (r - l + 1);
+		return func (st[lg][l], st[lg][r - (1 << lg) + 1]);
+	}
+};
+
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<int> a (n);
+		in (a);
+		RangeQuery rmq (a, [] (const int x, const int y) -> int { return min (x, y); });
+		rep (i, 0, n) {
+			int low = i, high = n - 1;
+			while (low < high) {
+				int mid = (low + high + 1) / 2;
+				if (rmq.get (mid, n - 1) >= a[i]) {
+					high = mid - 1;
+				}	else {
+					low = mid;
+				}
+			}
+			cout << low - i - 1 << " \n"[i == n - 1];
+		}
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

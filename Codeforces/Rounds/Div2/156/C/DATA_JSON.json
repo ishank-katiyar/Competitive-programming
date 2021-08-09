@@ -1,0 +1,35 @@
+{
+    "name": "C. Almost Arithmetical Progression",
+    "group": "Codeforces - Codeforces Round #156 (Div. 2)",
+    "url": "https://codeforces.com/problemset/problem/255/C",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n3 5\n",
+            "output": "2\n"
+        },
+        {
+            "input": "4\n10 20 10 30\n",
+            "output": "3\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "CAlmostArithmeticalProgression"
+        }
+    },
+    "batch": {
+        "id": "f9a6816c-2f69-4509-96f5-a7f7228f2882",
+        "size": 1
+    }
+}

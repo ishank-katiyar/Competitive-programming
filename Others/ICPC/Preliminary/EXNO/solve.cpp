@@ -134,7 +134,67 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		ll n, x;
+		in (n, x);
+
+		if (x >= n) {
+			out (1);
+			return;
+		}
+
+		if (x == 0 && n % 2 == 1) {
+			out (-1);
+			return;
+		}
+
+		bool first = false;
+		if (n % 2 == 1) {
+			n--, x--;
+			first = true;
+		}
+
+		vector<pair<ll, ll>> one;
+
+		const int max_bit = 40;
+
+		int ans = first;
+
+		for (int i = 1; i < max_bit; i++) {
+			if ((n >> i) & 1) {
+				if (i % 2 == 0) {
+					one.pb (mk (1, 1ll << (i - 1)));
+					one.pb (mk (1, 1ll << (i - 1)));
+					ans += 2;
+				}	else {
+					one.pb (mk (1, 1ll << i));
+					ans += 1;
+				}
+			}
+		}
+
+		sort (_(one), [] (const pair<ll, ll> A, const pair<ll, ll> B) -> bool {
+			if (A.first == B.first) return A.second < B.second;
+			return A.first < B.first;
+		});
+
+		ll sum = 0;
+		int idx = SZ(one);
+
+		debug (one)
+
+		for (int i = 0; i < SZ(one); i++) {
+			sum += one[i].second;
+			if (sum > x) {
+				idx = i;
+				break;
+			}
+		}
+
+		debug (idx)
+
+		chmin (ans, SZ(one) - idx + (idx > 0 || first ? 1 : 0));
+
+		out (ans);
 	};
 
 	int TestCase = 1;

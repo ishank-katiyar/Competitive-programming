@@ -1,0 +1,31 @@
+{
+    "name": "B. Two Tables",
+    "group": "Codeforces - Educational Codeforces Round 112 (Rated for Div. 2)",
+    "url": "https://codeforces.com/contest/1555/problem/B",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 2000,
+    "tests": [
+        {
+            "input": "5\n8 5\n2 1 7 4\n4 2\n5 4\n2 2 5 4\n3 3\n1 8\n0 3 1 6\n1 5\n8 1\n3 0 6 1\n5 1\n8 10\n4 5 7 8\n8 5\n",
+            "output": "1.000000000\n-1\n2.000000000\n2.000000000\n0.000000000\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "BTwoTables"
+        }
+    },
+    "batch": {
+        "id": "391b5b9f-4863-410a-86b9-5b0e1ead4183",
+        "size": 1
+    }
+}

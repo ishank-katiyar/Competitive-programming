@@ -1,0 +1,31 @@
+{
+    "name": "Chef In Infinite Plane",
+    "group": "CodeChef - July Cook-Off 2021 Division 1",
+    "url": "https://www.codechef.com/COOK131A/problems/CHFPLN",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n6\n2 2 4 4 2 6\n2\n16 8\n",
+            "output": "4\n2\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ChefInInfinitePlane"
+        }
+    },
+    "batch": {
+        "id": "11795094-5d80-4851-96d3-ff4a5dc1934b",
+        "size": 1
+    }
+}

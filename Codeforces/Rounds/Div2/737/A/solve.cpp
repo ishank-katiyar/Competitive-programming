@@ -134,7 +134,11 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt();
+		vector<ll> a (n);
+		in (a);
+		// out (double(*max_element(_(a))) + (double)(accumulate(_(a), 0ll) - *max_element(_(a))) / ((double)n - 1));
+		cout << fixed << setprecision(10) << double(*max_element(_(a))) + (double)(accumulate(_(a), 0ll) - *max_element(_(a))) / ((double)n - 1) << '\n';
 	};
 
 	int TestCase = 1;

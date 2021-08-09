@@ -78,8 +78,8 @@ template<class H, class... T> void debug(H head, T... tail) { std::cerr << ToStr
 #define pb push_back
 #define eb emplace_back
 #define mk make_pair
-#define _(x)  (x).begin(), (x).end()
-#define r_(x)  (x).rbegin(), (x).rend()
+#define all(x)  (x).begin(), (x).end()
+#define rall(x)  (x).rbegin(), (x).rend()
 #define SZ(a) int(a.size())
 using ll = int64_t;
 template<class T = int> T nxt () { T TemporaryVariable; std::cin >> TemporaryVariable; return TemporaryVariable; }
@@ -97,7 +97,7 @@ template<class A> std::istream& operator >> (std::istream &is, std::vector<A> &v
 
 // input-output
 void in () {}
-template<class A, class... B> void in (A &head, B&... tail) { std::cin >> head; in (tail...); }
+template<class A, class... B> void in (A &head, B... tail) { std::cin >> head; in (tail...); }
 void _out () { std::cout << '\n'; }
 template<class A, class... B> void _out (A head, B... tail) { std::cout << " " << head; _out (tail...); }
 template<class A, class... B> void out (A head, B... tail) { std::cout << head; _out (tail...); }
@@ -134,7 +134,34 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<string> a (n);
+		// cin >> a;
+		in (a);
+		debug (a)
+
+		auto f = [&] (char ch) -> int {
+			vector<int> b;
+			rep (i, 0, n) {
+				b.pb ((2 * count (all (a[i]), ch)) - SZ(a[i]));
+			}
+			sort (rall (b));
+			int pre = 0;
+			rep (i, 0, n) {
+				pre += b[i];
+				if (pre <= 0) return i;
+			}
+			return n;
+		};
+
+		int ans = 0;
+
+		rep (i, 0, 5) {
+			chmax (ans, f(i + 'a'));
+		}
+
+		// cout << ans << '\n';
+		out (ans);
 	};
 
 	int TestCase = 1;

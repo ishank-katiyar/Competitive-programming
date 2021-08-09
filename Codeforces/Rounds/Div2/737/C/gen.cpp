@@ -133,16 +133,9 @@ using namespace std;
 int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
-	auto solve = [&] () -> void {
-		
-	};
-
-	int TestCase = 1;
-	cin >> TestCase;
-
-	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
-		solve ();
-	}
+	out (1);
+	int x = 5;
+	out (rnd(1, x), rnd (0, x));
 
 	return 0;
 }

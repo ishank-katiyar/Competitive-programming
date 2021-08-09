@@ -1,0 +1,31 @@
+{
+    "name": "Mod Equality",
+    "group": "CodeChef - July Cook-Off 2021 Division 1",
+    "url": "https://www.codechef.com/COOK131A/problems/MODEQUAL",
+    "interactive": false,
+    "memoryLimit": 256,
+    "timeLimit": 1000,
+    "tests": [
+        {
+            "input": "2\n3\n2 1 3\n3\n1 1 3\n",
+            "output": "3\n1\n"
+        }
+    ],
+    "testType": "single",
+    "input": {
+        "type": "stdin"
+    },
+    "output": {
+        "type": "stdout"
+    },
+    "languages": {
+        "java": {
+            "mainClass": "Main",
+            "taskClass": "ModEquality"
+        }
+    },
+    "batch": {
+        "id": "8eda709c-860f-47e3-a4da-1515d431d301",
+        "size": 1
+    }
+}

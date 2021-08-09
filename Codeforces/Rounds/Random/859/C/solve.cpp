@@ -134,11 +134,32 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n;
+		cin >> n;
+		vector<int> A (n);
+		in (A);
+		vector<int> suf (n);
+		suf[n - 1] = A[n - 1];
+		rep (i, n - 1, 0) suf[i] += suf[i + 1] + A[i];
+
+		map <int, int> mp;
+
+		auto f = y_combinator([&] (auto self, int idx) -> int {
+			if (mp.count (idx)) return mp[idx];
+			if (idx == n - 1) {
+				mp[idx] = A[idx];
+				return mp[idx];
+			}
+			mp[idx] = max (A[idx] + suf[idx + 1] - self (idx + 1), self (idx + 1));
+			return mp[idx];
+		});
+
+		auto x = f (0);
+		out (suf[0] - x, x);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

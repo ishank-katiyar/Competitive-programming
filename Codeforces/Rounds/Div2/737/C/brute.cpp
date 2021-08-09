@@ -134,7 +134,28 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n, k;
+		in (n, k);
+		int ans = 0;
+		for (int mask = 0; mask < (1 << (n * k)); mask += 1) {
+			vector<int> a;
+			int cur = 0;
+			for (int i = 0; i < (n * k); i++) {
+				if (i % k == 0) {
+					a.pb (cur);
+					cur = 0;
+				}
+				cur += ((mask >> i) & 1) * (1 << (i % k));
+			}
+			a.pb (cur);
+			a.erase (a.begin());
+			int ad = a.front(), xr = a.front();
+			for (int i = 1; i < SZ(a); i++) {
+				ad &= a[i], xr ^= a[i];
+			}
+			ans += (ad >= xr);
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;

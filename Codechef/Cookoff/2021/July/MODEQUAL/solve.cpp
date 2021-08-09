@@ -134,7 +134,16 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<int> a (n);
+		in (a);
+		sort (_(a));
+		bool ok = true;
+		rep (i, 0, n) {
+			if (a[i] == a[0]) continue;
+			ok &= (a[i] - a[0] > a[0]);
+		}
+		out (ok ? n - count (_(a), a[0]) : n);
 	};
 
 	int TestCase = 1;
