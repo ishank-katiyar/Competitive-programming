@@ -1,0 +1,41 @@
+Hint:- See how much Beautifullness each edge contributes to final Beautifullness of the tree.
+
+First make the tree rooted at 1.
+
+Contribution of single edge towards Beautifullness of the tree is "Number of simple paths which contain this edge * weight of this edge".
+Number of simple paths which contain an edge is equals to "number of nodes one side of the edge * number of nodes on other of the edge".
+For the edge 1-2, there are 3 nodes left of 2(including itself) and 3 nodes right of 1(including itself).
+For the edge, 2-5, there are 1 node below 5 (including itself), and 5 nodes above 2(including itself).
+So, this can be calculated with a simple bfs, calculate number of nodes in the subtree of every node (including itself), so for every edge u-v, it will be subtree_nodes[v] * (total_nodes - subtree_nodes[v]).
+
+Sum of these individual Contribution of these edges is Beautifullness of the tree.
+
+Now to flip sign of weights of edges, pick edge with smallest contribution and which has not picked already.
+
+For this, store individual contribution of each edge in and array and sort it in increasing sequence.
+
+Now, to calculate Beautifullness after fliping I weights, simply subtract 2 * (sum of I smallest contribution).
+
+// new
+First, make the tree rooted at 1.
+
+Contribution of single edge towards Beautifulness of the tree is "Number of simple paths which contain this edge * weight of this edge".
+The number of simple paths which contain an edge equals to "number of nodes one side of the edge * number of nodes on other of the edge".
+
+
+[Click and drag to move]
+
+
+For the edge 1-2, there are 3 nodes left of 2(including itself) and 3 nodes right of 1(including itself).
+For the edge, 2-5, there is 1 node below 5 (including itself), and 5 nodes above 2(including itself).
+
+
+So, this can be calculated with a simple bfs, calculate the number of nodes in the subtree of every node (including itself), so for every edge u-v (u is parent of v) , it will be subtree_nodes[v] * (total_nodes - subtree_nodes[v]).
+
+The sum of these individual contributions of these edges is the Beautifulness of the tree.
+
+Now to flip the sign of weights of edges, pick the edge with the smallest contribution and which has not been picked already.
+
+For this, store the individual contribution of each edge in the array and sort it in increasing order.
+
+Now, to calculate Beautifulness after flipping I weights, simply subtract 2 * (sum of I smallest contribution) from the Beautifulness of the original tree.

@@ -1,0 +1,13 @@
+Bob has an edge-weighted tree with N vertices.
+
+Value of a simple path in a tree is sum of weights of its edges. Beautifullness of a tree is sum of value of all simple paths in a tree.
+
+Bob is fond of Beautifullness of his tree, so he like it as maximum as possible.
+
+One day while Bob was at work, Alice was playing with his tree and fliped the sign of some weights of tree.
+
+For example, if Bob had tree with weights [1,2,3,4,5], bob could have flip sign of 2nd and 4th weight and it will become [1,-2,3,-4,5].
+
+For every i between 0 and N - 1, help Bob to find Maximum possible Beautifullness of the tree if Alice had fliped exactly i weights of the tree. 
+
+Note:- A simple path in a tree is a path where every vertex is distinct.
