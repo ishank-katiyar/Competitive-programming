@@ -134,11 +134,63 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n, M;
+		in (n, M);
+		vector<int> a (n);
+		in (a);
+		assert (is_sorted (_(a)));
+		vector<int> vec_light (n + 1), vec_dark (n + 1);
+		vec_light[0] = a[0];
+		rep (i, 1, n) {
+			if (i % 2) {
+				vec_dark[i] = a[i] - a[i - 1];
+			}	else {
+				vec_light[i] = a[i] - a[i - 1];
+			}
+			vec_dark[i] += vec_dark[i - 1];
+			vec_light[i] += vec_light[i - 1];
+		}
+		if (n % 2) {
+			vec_dark[n] = M - a[n - 1];
+		}	else {
+			vec_light[n] = M - a[n - 1];
+		}
+		vec_dark[n] += vec_dark[n - 1];
+		vec_light[n] += vec_light[n - 1];
+
+		int ans = vec_light[n];
+		int light = 0, dark = 0;
+
+		rep (i, n, 0) {
+			if (i % 2) {
+				if (i == n - 1) light = M - a[n - 1];
+				else light += a[i + 1] - a[i];
+			} else {
+				if (i == n - 1) dark = M - a[n - 1];
+				else dark += a[i + 1] - a[i];
+			}
+			if ((i == n - 1 && M - a[n - 1] > 1) || (a[i + 1] - a[i] > 1)) {
+				if (i % 2) {
+					//light
+					chmax (ans, vec_light[i] + dark + 1);
+				}	else {
+					// dark
+					chmax (ans, vec_light[i] + dark - 1);
+				}
+			}	else if ((i == 0 && a[0] > 1) || (a[i] - a[i - 1] > 1)) {
+				if (i % 2) {
+					chmax (ans, vec_light[i] + 1 + dark);
+				}	else {
+					chmax (ans, vec_light[i] - 1 + dark);
+				}
+			}
+		}
+
+		out (ans);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

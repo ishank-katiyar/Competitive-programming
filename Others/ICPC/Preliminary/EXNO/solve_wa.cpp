@@ -134,7 +134,82 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		ll n, x;
+		in (n, x);
+
+		if (x >= n) {
+			out (1);
+			return;
+		}
+
+		if (x == 0 && n % 2 == 1) {
+			out (-1);
+			return;
+		}
+
+		auto f = [] (const ll xx) -> ll {
+			if (xx % 2 == 1) {
+				return 1e9;
+			}
+			const int Max_bit = 40;
+			int ret = 0;
+			for (int i = 1; i < Max_bit; i++) {
+				if ((xx >> i) & 1) {
+					ret += 1 + (i % 2 == 0);
+				}
+			}
+			return ret;
+			// int ret = 0;
+			// ll yy = 0;
+			// for (int i = 1; i < max_bit; i += 2) {
+			// 	if ((xx >> i) & 1) {
+			// 		yy += (1ll << i);
+			// 		ret += 1;
+			// 	}
+			// }
+			// if (xx == yy) return ret;
+			// return INT_MAX;
+		};
+
+		// debug (f (12))
+
+		const int max_bit = 40;
+		ll ans = INT_MAX;
+		ll y = 0;
+
+		for (int i = 0; i < max_bit; i++) {
+			if ((n >> i) & 1) {
+				y += (1ll << i);
+				debug (i, y)
+				if (y <= x) {
+					chmin (ans, 1 + f (n - y));
+				}
+			}
+		}
+
+		y = 0;
+		ll cnt = 0;
+		for (int i = max_bit - 1; i >= 0; i--) {
+			if (n - y <= x) {
+				chmin (ans, cnt + 1);
+			}
+			if ((n >> i) & 1) {
+				y += (1ll << i);
+				cnt += 1 + (i % 2 == 0);
+				if (n - y <= x) {
+					chmin (ans, cnt + 1);
+				}
+			}
+		}
+
+		chmin (ans, f (n));
+		if (x >= 2) {
+			chmin (ans, f (n - 2) + 1);
+		}
+
+		assert (ans <= 1e9);
+		// if (ans >= 1e9) ans = -1;
+		out (ans);
 	};
 
 	int TestCase = 1;

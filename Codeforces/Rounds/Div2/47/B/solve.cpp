@@ -134,11 +134,16 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		string s = nxt <string> ();
+		map <int, int64_t> mp;
+		for (auto& i: s) mp[i] += 1;
+		int64_t ans = 0;
+		for (auto& i: mp) ans += i.second * i.second;
+		out (ans);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

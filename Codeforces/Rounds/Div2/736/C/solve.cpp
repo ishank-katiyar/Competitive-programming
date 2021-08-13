@@ -134,11 +134,139 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		struct node {
+			set<int> adj;
+			int small, big;
+			int a_del;
+			bool del;
+			node (): adj (set<int> ()), small (0), big(0), a_del (0), del (false) {}
+			string to_string () const { return "{" + ToString::to_string(adj) + ", " + ToString::to_string(small) + ", " + ToString::to_string(big) + ", " + ToString::to_string(a_del) + ", " + ToString::to_string(del) + "}"; }
+		};
+
+		int n, m;
+		in (n, m);
+
+		vector<node> gr (n);
+
+		int ans = 0;
+
+		auto insert = [&] (int x, int y) {
+			assert (x < y);
+			gr[x].adj.insert (y);
+			gr[x].big += 1;
+			// gr[x].del = (gr[x].big > 0 && (gr[x].small - gr[x].a_del) <= 0) || gr[x].del;
+			if (gr[x].big > 0 && (gr[x].small - gr[x].a_del) <= 0 && gr[x].del == false) {
+				gr[x].del = true;
+				ans += 1;
+			}
+
+			if (gr[x].del == true && gr[x].small - gr[x].a_del > 0) {
+				gr[x].del = false;
+				ans -= 1;
+			}
+
+			if (gr[x].big == 0 && gr[x].del == true) {
+				gr[x].del = false;
+				ans -= 1;
+			}
+
+			gr[y].adj.insert (x);
+			gr[y].small += 1;
+			gr[y].a_del += gr[x].del;
+			if (gr[y].big > 0 && (gr[y].small - gr[y].a_del) <= 0 && gr[y].del == false) {
+				gr[y].del = true;
+				ans += 1;
+			}
+
+			if (gr[y].del == true && gr[y].small - gr[y].a_del > 0) {
+				gr[y].del = false;
+				ans -= 1;
+			}
+
+			if (gr[y].big == 0 && gr[y].del == true) {
+				gr[y].del = false;
+				ans -= 1;
+			}
+		};
+
+		auto remove = [&] (int x, int y) {
+			assert (x < y);
+
+			gr[y].a_del -= gr[x].del;
+
+			gr[x].adj.erase (y);
+			gr[x].big -= 1;
+
+			if (gr[x].big > 0 && (gr[x].small - gr[x].a_del) <= 0 && gr[x].del == false) {
+				gr[x].del = true;
+				ans += 1;
+			}
+			if (gr[x].del == true && gr[x].small - gr[x].a_del > 0) {
+				gr[x].del = false;
+				ans -= 1;
+			}
+
+			if (gr[x].big == 0 && gr[x].del == true) {
+				gr[x].del = false;
+				ans -= 1;
+			}
+
+
+			gr[y].adj.erase (x);
+			gr[y].small -= 1;
+			// gr[y].a_del -= gr[x].del;
+			if (gr[y].big > 0 && (gr[y].small - gr[y].a_del) <= 0 && gr[y].del == false) {
+				gr[y].del = true;
+				ans += 1;
+			}
+
+			if (gr[y].del == true && gr[y].small - gr[y].a_del > 0) {
+				gr[y].del = false;
+				ans -= 1;
+			}
+			
+			if (gr[y].big == 0 && gr[y].del == true) {
+				gr[y].del = false;
+				ans -= 1;
+			}
+		};
+
+		rep (i, 0, m) {
+			int x, y;
+			in (x, y);
+			x--, y--;
+			if (x > y) swap (x, y);
+			insert (x, y);
+			debug (x, y, gr)
+		}
+
+		int q = nxt();
+		while (q--) {
+			int type = nxt();
+			if (type == 1) {
+				int x, y;
+				in (x, y);
+				x--, y--;
+				if (x > y) swap (x, y);
+				insert (x, y);
+				debug ("insert", x, y, gr)
+			}
+			if (type == 2) {
+				int x, y;
+				in (x, y);
+				x--, y--;
+				if (x > y) swap (x, y);
+				remove (x, y);
+				debug ("remove", x, y, gr)
+			}
+			if (type == 3) {
+				out (n - ans);
+			}
+		}
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

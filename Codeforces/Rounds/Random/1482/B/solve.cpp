@@ -1,3 +1,5 @@
+#warning Incomplete
+
 #include <bits/stdc++.h>
 
 // Debugging
@@ -78,29 +80,20 @@ template<class H, class... T> void debug(H head, T... tail) { std::cerr << ToStr
 #define pb push_back
 #define eb emplace_back
 #define mk make_pair
-#define _(x)  (x).begin(), (x).end()
-#define r_(x)  (x).rbegin(), (x).rend()
-#define SZ(a) int(a.size())
+#define all(x)  (x).begin(), (x).end()
 using ll = int64_t;
 template<class T = int> T nxt () { T TemporaryVariable; std::cin >> TemporaryVariable; return TemporaryVariable; }
 template<class T> T rev (T a) { reverse (a.begin(), a.end()); return a; }
-template<class A> void chmax (A &a, A b) { a = std::max (a, b); }
-template<class A> void chmin (A &a, A b) { a = std::min (a, b); }
+
 
 
 // custom input overloading
 template<class A, class B> std::ostream& operator << (std::ostream &os, const std::pair<A, B> p) { os << p.first << ' ' << p.second; return os; }
 template<class A, class B> std::istream& operator >> (std::istream &is, std::pair<A, B> &p) { is >> p.first >> p.second; return is; }
+
 template<class A> std::ostream& operator << (std::ostream &os, const std::vector<A> vec) { int sz = vec.size(); for (int i = 0; i < sz; i++) { os << vec[i]; if (i < sz - 1) { os << " "; } } return os; }
 template<class A> std::istream& operator >> (std::istream &is, std::vector<A> &vec) { int sz = vec.size(); for (int i = 0; i < sz; i++) { is >> vec[i]; } return is; }
 
-
-// input-output
-void in () {}
-template<class A, class... B> void in (A &head, B&... tail) { std::cin >> head; in (tail...); }
-void _out () { std::cout << '\n'; }
-template<class A, class... B> void _out (A head, B... tail) { std::cout << " " << head; _out (tail...); }
-template<class A, class... B> void out (A head, B... tail) { std::cout << head; _out (tail...); }
 
 
 // Ordered_set
@@ -109,9 +102,11 @@ using namespace __gnu_pbds;
 template<class X, class cmp = std::less<X>> using ordered_set = tree<X, null_type, cmp, rb_tree_tag, tree_order_statistics_node_update>;
 
 
+
 // Random number Generator
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 template<class A> A rnd(A x, A y) { return std::uniform_int_distribution<A> (x, y) (rng); }
+
 
 
 namespace std {
@@ -134,7 +129,46 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		vector<ll> a (n);
+		cin >> a;
+		if (n == 1) {
+			cout << 0 << '\n';
+			return;
+		}
+		if (is_sorted (all (a)) || is_sorted (all (rev (a)))) {
+			vector<ll> dif;
+			rep (i, 1, n) {
+				dif.pb (a[i] - a[i - 1]);
+			}
+			if (count (all (dif), dif.front()) == n - 1) cout << 0 << '\n';
+			else cout << -1 << '\n';
+			return;
+		}
+		ll c = -1;
+		rep (i, 1, n) {
+			if (a[i] > a[i - 1]) {
+				c = a[i] - a[i - 1];
+				break;
+			}
+		}
+		ll m = -1;
+		rep (i, 1, n) {
+			if (a[i] < a[i - 1]) {
+				m = c - a[i] + a[i - 1];
+				break;
+			}
+		}
+		vector<ll> b (n);
+		b[0] = (a[0] + m) % m;
+		rep (i, 1, n) {
+			b[i] = (b[i - 1] + c + m) % m;
+		}
+		if (a == b) {
+			cout << m << ' ' << c << '\n';
+		}	else {
+			cout << -1 << '\n';
+		}
 	};
 
 	int TestCase = 1;

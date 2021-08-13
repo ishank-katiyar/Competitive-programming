@@ -134,11 +134,35 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n, k;
+		in (n, k);
+		vector<int> a (k);
+		in (a);
+		map<int, int> mp;
+		set<pair<int, int>> s;
+		for (int i = 1; i <= n; i++) {
+			s.insert (mk (i, i));
+			if (i + 1 <= n) s.insert (mk (i, i + 1));
+			if (i - 1 >= 1) s.insert (mk (i, i - 1));
+		}
+		for (auto& i: a) {
+			s.erase (mk (i, i));
+			mp[i] += 1;
+		}
+		for (int i = 0; i < k; i++) {
+			mp[a[i]]--;
+			if (mp[a[i] + 1] > 0) {
+				s.erase (mk (a[i], a[i] + 1));
+			}
+			if (mp[a[i] - 1] > 0) {
+				s.erase (mk (a[i], a[i] - 1));
+			}
+		}
+		out (SZ(s));
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

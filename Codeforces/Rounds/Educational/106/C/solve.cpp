@@ -1,5 +1,3 @@
-#warning Incomplete
-
 #include <bits/stdc++.h>
 
 class ToString {
@@ -112,7 +110,7 @@ int main() {
 			cin >> c[i];
 		}
 
-		set<int64_t> a, b;
+		multiset<int64_t> a, b;
 
 		a.insert (c.front());
 		b.insert (c[1]);

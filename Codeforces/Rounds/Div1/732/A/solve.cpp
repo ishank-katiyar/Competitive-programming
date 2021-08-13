@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-// Debugging
 class ToString {
 	constexpr static int float_precision = 6;
 public:
@@ -65,54 +64,23 @@ public:
 };
 
 void debug() { std::cerr << "]" << std::endl; }
-template<class H, class... T> void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; debug(tail...); }
+template<class H, class... T>
+void debug(H head, T... tail) { std::cerr << ToString::to_string(head) << " "; debug(tail...); }
 #ifdef LOCAL
 	#define debug(...) std::cerr << "[" << #__VA_ARGS__ << " ] = ["; debug(__VA_ARGS__);
 #else
 	#define debug(...)
 #endif
 
-
-// macros
-#define rep(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
-#define pb push_back
-#define eb emplace_back
-#define mk make_pair
-#define _(x)  (x).begin(), (x).end()
-#define r_(x)  (x).rbegin(), (x).rend()
-#define SZ(a) int(a.size())
-using ll = int64_t;
-template<class T = int> T nxt () { T TemporaryVariable; std::cin >> TemporaryVariable; return TemporaryVariable; }
-template<class T> T rev (T a) { reverse (a.begin(), a.end()); return a; }
-template<class A> void chmax (A &a, A b) { a = std::max (a, b); }
-template<class A> void chmin (A &a, A b) { a = std::min (a, b); }
-
-
-// custom input overloading
-template<class A, class B> std::ostream& operator << (std::ostream &os, const std::pair<A, B> p) { os << p.first << ' ' << p.second; return os; }
-template<class A, class B> std::istream& operator >> (std::istream &is, std::pair<A, B> &p) { is >> p.first >> p.second; return is; }
-template<class A> std::ostream& operator << (std::ostream &os, const std::vector<A> vec) { int sz = vec.size(); for (int i = 0; i < sz; i++) { os << vec[i]; if (i < sz - 1) { os << " "; } } return os; }
-template<class A> std::istream& operator >> (std::istream &is, std::vector<A> &vec) { int sz = vec.size(); for (int i = 0; i < sz; i++) { is >> vec[i]; } return is; }
-
-
-// input-output
-void in () {}
-template<class A, class... B> void in (A &head, B&... tail) { std::cin >> head; in (tail...); }
-void _out () { std::cout << '\n'; }
-template<class A, class... B> void _out (A head, B... tail) { std::cout << " " << head; _out (tail...); }
-template<class A, class... B> void out (A head, B... tail) { std::cout << head; _out (tail...); }
-
-
 // Ordered_set
 #include <ext/pb_ds/assoc_container.hpp> // Common file
 using namespace __gnu_pbds;
-template<class X, class cmp = std::less<X>> using ordered_set = tree<X, null_type, cmp, rb_tree_tag, tree_order_statistics_node_update>;
-
+template<class X, class cmp = std::less<X>>
+using ordered_set = tree<X, null_type, cmp, rb_tree_tag, tree_order_statistics_node_update>;
 
 // Random number Generator
 std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
 template<class A> A rnd(A x, A y) { return std::uniform_int_distribution<A> (x, y) (rng); }
-
 
 namespace std {
 
@@ -134,7 +102,22 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n;
+		cin >> n;
+		vector<int> odd, even;
+		vector<int> a (n);
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+			(i % 2 ? odd : even).push_back (a[i]);
+		}
+		sort (odd.begin(), odd.end());
+		sort (even.begin(), even.end());
+		sort (a.begin(), a.end());
+		vector<int> oodd, eeven;
+		for (int i = 0; i < n; i++) {
+			(i % 2 ? oodd : eeven).push_back (a[i]);
+		}
+		cout << (odd == oodd && even == eeven ? "YES" : "NO") << '\n';
 	};
 
 	int TestCase = 1;

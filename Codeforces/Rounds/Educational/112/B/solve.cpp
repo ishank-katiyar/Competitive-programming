@@ -134,7 +134,36 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int W, H, x1, y1, x2, y2, w, h;
+		in (W, H, x1, y1, x2, y2, w, h);
+		int ans = INT_MAX;
+		// if (y2 + max (0, h - y1) <= H && x2 + max (0, w - x1) <= W) {
+		// 	chmin (ans, max (0, h - y1) + max (0, w - x1));
+		// }
+		// if (y2 + max (0, h - y1) <= H && x1 - max (0, x2 - (W - w)) >= 0) {
+		// 	chmin (ans, max (0, h - y1) + max (0, x2 - (W - w)));
+		// }
+		// if (y1 - max (0, y2 - (H - h)) >= 0 && x1 - max (0, x2 - (W - w)) >= 0) {
+		// 	chmin (ans, max (0, y2 - (H - h)) + max (0, x2 - (W - w)));
+		// }
+		// if (y1 - max (0, y2 - (H - h)) >= 0 && x2 + max (0, w - x1) <= W) {
+		// 	chmin (ans, max (0, y2 - (H - h)) + max (0, w - x1));
+		// }
+		if (y2 + max (0, h - y1) <= H) {
+			chmin (ans, max (0, h - y1));
+		}
+		if (x2 + max (0, w - x1) <= W) {
+			chmin (ans, max (0, w - x1));
+		}
+		if (x1 - max (0, x2 - (W - w)) >= 0) {
+			chmin (ans, max (0, x2 - (W - w)));
+		}
+		if (y1 - max(0, y2 - (H - h)) >= 0) {
+			chmin (ans, max (0, y2 - (H - h)));
+		}
+		debug (ans)
+		if (ans == INT_MAX) ans = -1;
+		out (ans);
 	};
 
 	int TestCase = 1;

@@ -134,7 +134,31 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		ll n, x;
+		in (n, x);
+
+		auto f = [] (const ll xx) -> ll {
+			if (xx <= 0) return 0;
+			if (xx % 2 == 1) {
+				return 1e9;
+			}
+			const int Max_bit = 40;
+			int ret = 0;
+			for (int i = 1; i < Max_bit; i++) {
+				if ((xx >> i) & 1) {
+					ret += 1 + (i % 2 == 0);
+				}
+			}
+			return ret;
+		};
+
+		ll ans = INT_MAX;
+		chmin (ans, f (n));
+		rep (i, 1, x + 1) {
+			chmin (ans, ll(1) + f (n - i));
+		}
+		if (ans > 100) ans = -1;
+		out (ans);
 	};
 
 	int TestCase = 1;

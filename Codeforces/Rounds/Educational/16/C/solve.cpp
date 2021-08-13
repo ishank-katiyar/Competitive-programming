@@ -134,11 +134,45 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int n = nxt ();
+		assert (n % 2);
+		deque<int> d;
+		rep (i, 1, n * n + 1) {
+			(i % 2 ? d.push_front(i) : d.push_back (i));
+		}
+		debug (d)
+		vector<vector<int>> a (n, vector<int> (n, -1));
+
+		// y_combinator ([&] (auto self, int x, int y) -> void {
+		// 	if (x < 0 || x >= n || y < 0 || y >= n || a[x][y] != -1) return;
+		// 	a[x][y] = d.front();
+		// 	d.pop_front();
+		// 	self (x + 1, y);
+		// 	self (x - 1, y);
+		// 	self (x, y + 1);
+		// 	self (x, y - 1);
+		// })(n / 2, n / 2);
+
+		queue<pair<int, int>> q;
+		q.push (mk (n / 2, n / 2));
+		while (q.empty() == false) {
+			int x, y;
+			tie (x, y) = q.front();
+			q.pop();
+			if (x < 0 || x >= n || y < 0 || y >= n || a[x][y] != -1) continue;
+			a[x][y] = d.front();
+			d.pop_front();
+			q.push (mk (x + 1, y));
+			q.push (mk (x - 1, y));
+			q.push (mk (x, y + 1));
+			q.push (mk (x, y - 1));
+		}
+
+		for (auto& i: a) out (i);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

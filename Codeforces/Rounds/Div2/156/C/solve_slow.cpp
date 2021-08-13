@@ -134,11 +134,75 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
+		int n = nxt ();
+		vector<int> a (n);
+		in (a);
+		if (n == 1) {
+			out (1);
+			return;
+		}
 		
+		vector<vector<int>> mp (1e6 + 1);
+		rep (i, 0, n) mp[a[i]].pb (i);
+		vector<int> b (a);
+		sort (_(b));
+		b.erase (unique(_(b)), b.end());
+		int ans =  0;
+		// for (auto& i: mp) b.pb (i.second), chmax (ans, SZ(i.second));
+		debug (SZ(b))
+		rep (i, 0, SZ(b) - 1) rep (j, i + 1, SZ(b)) {
+			auto aa = mp[b[i]], bb = mp[b[j]];
+			chmax (ans, SZ(aa));
+			chmax (ans, SZ(bb));
+			int cur_ans = 1;
+			bool ok = aa.back() > bb.back();
+			if (ok) aa.pop_back();
+			else bb.pop_back();
+			while (aa.empty() == false && bb.empty() == false) {
+				if (aa.back() > bb.back()) {
+					aa.pop_back();
+					if (ok == false) {
+						cur_ans += 1;
+						ok ^= 1;
+					}
+				}	else {
+					bb.pop_back();
+					if (ok == true) {
+						cur_ans += 1;
+						ok ^= 1;
+					}
+				}
+			}
+			if (ok && bb.empty() == false) cur_ans += 1;
+			if (ok == false && aa.empty() == false) cur_ans += 1;
+			chmax (ans, cur_ans);
+			// while (aa.empty() == false && bb.empty() == false) {
+			// 	if (aa.back() > bb.back()) tmp.pb (mk(aa.back(), 1)), aa.pop_back();
+			// 	else tmp.pb (mk(bb.back(), 2)), bb.pop_back();
+			// }
+			// while (aa.empty() == false) {
+			// 	tmp.pb (mk (aa.back(), 1)), aa.pop_back();
+			// }
+			// while (bb.empty() == false) {
+			// 	tmp.pb (mk(bb.back(), 2)), bb.pop_back();
+			// }
+			// int cur_ans = 1;
+			// bool ok = tmp.back().second == 1;
+			// tmp.pop_back();
+			// while (tmp.empty() == false) {
+			// 	if (ok && tmp.back().second == 2) {
+			// 		cur_ans += 1, ok ^= 1;
+			// 	}	else if (ok == false && tmp.back().second == 1) {
+			// 		cur_ans += 1, ok ^= 1;
+			// 	}
+			// 	tmp.pop_back();
+			// }
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;
-	cin >> TestCase;
+	// cin >> TestCase;
 
 	for (int TestCaseNumber = 1; TestCaseNumber <= TestCase; TestCaseNumber += 1) {
 		solve ();

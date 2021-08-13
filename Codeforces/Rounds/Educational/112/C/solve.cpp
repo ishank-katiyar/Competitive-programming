@@ -134,7 +134,22 @@ int main() {
 	std::cin.tie(0)->sync_with_stdio(0);
 
 	auto solve = [&] () -> void {
-		
+		int m = nxt ();
+		vector<int> a (m), b (m);
+		in (a, b);
+		vector<int> pre (b);
+		for (int i = 1; i < m; i++) pre[i] += pre[i - 1];
+		vector<int> suf (a);
+		for (int i = m - 2; i >= 0; i--) suf[i] += suf[i + 1];
+		int ans = INT_MAX;
+		rep (i, 0, m) {
+			int cur1 = 0;
+			if (i > 0) cur1 = pre[i - 1];
+			int cur2 = 0;
+			if (i < m - 1) cur2 = suf [i + 1];
+			chmin (ans, max (cur1, cur2));
+		}
+		out (ans);
 	};
 
 	int TestCase = 1;
